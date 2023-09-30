@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var warning_time = 2.0
+@export var damage_time = 1.0
 @onready var sprite = $Sprite2D
 
 var is_damaging = false
@@ -25,6 +26,8 @@ func _ready():
 	
 	is_damaging = true
 	sprite.modulate = Color.WHITE
+	await get_tree().create_timer(damage_time).timeout
+	queue_free()
 
 
 func _on_area_2d_body_entered(body):
