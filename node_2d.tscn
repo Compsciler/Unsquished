@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3yyhj2vejcjk"]
+[gd_scene load_steps=11 format=3 uid="uid://b3yyhj2vejcjk"]
 
 [ext_resource type="Texture2D" uid="uid://d0swy2woght45" path="res://icon.svg" id="1_fke2k"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_h34pj"]
@@ -9,6 +9,9 @@ size = Vector2(127, 127)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqckv"]
 radius = 134.629
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33o3g"]
+size = Vector2(144, 144)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bjkvj"]
 normal = Vector2(0, 1)
@@ -32,21 +35,26 @@ script = ExtResource("1_h34pj")
 texture = ExtResource("1_fke2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-1.5, 1.5)
 shape = SubResource("RectangleShape2D_1rw1c")
 
 [node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+position = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
-position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_qqckv")
+
+[node name="HurtArea2D" type="Area2D" parent="CharacterBody2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtArea2D"]
+shape = SubResource("RectangleShape2D_33o3g")
 
 [node name="UpWall" type="AnimatableBody2D" parent="." groups=["wall"]]
 position = Vector2(480, 0)
 collision_layer = 2
 script = ExtResource("3_rptvh")
 
-[node name="Sprite2D3" type="Sprite2D" parent="UpWall"]
+[node name="Sprite2D" type="Sprite2D" parent="UpWall"]
 position = Vector2(0, -640)
 scale = Vector2(10, 10)
 texture = ExtResource("1_fke2k")
@@ -72,7 +80,7 @@ position = Vector2(0, 270)
 collision_layer = 2
 script = ExtResource("3_rptvh")
 
-[node name="Sprite2D2" type="Sprite2D" parent="LeftWall"]
+[node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
 position = Vector2(-640, 0)
 scale = Vector2(10, 10)
 texture = ExtResource("1_fke2k")
@@ -94,3 +102,6 @@ texture = ExtResource("1_fke2k")
 shape = SubResource("WorldBoundaryShape2D_ygoia")
 
 [connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_exited"]
+[connection signal="body_shape_entered" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_shape_entered"]
