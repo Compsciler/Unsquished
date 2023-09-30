@@ -1,7 +1,7 @@
 extends AnimatableBody2D
 class_name Wall
 
-@export var speed = 100
+@export var speed = 50
 @onready var normal = $CollisionShape2D.get_shape().normal;
 @export var retract_strength = 100
 

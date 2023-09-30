@@ -10,6 +10,8 @@ var player_facing = Vector2.RIGHT
 
 var squished = false
 
+var in_cooldown = false
+
 func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("left", "right")
 	var vertical_direction = Input.get_axis("up", "down")
@@ -24,17 +26,17 @@ func _physics_process(delta):
 	
 	# Punch
 	if Input.is_action_just_pressed("hit"):
-		print("got input")
-		var retract_walls = []
-		for wall in punch_walls:
-			print("some punch walls")
-			var dot_prod = -wall.normal.dot(player_facing)
-			if dot_prod > 0:
-				retract_walls.append(wall)
-		for wall in retract_walls:
-			print("some walls")
-			wall.retract(1.0 / len(retract_walls))
-	
+		if !in_cooldown:
+			in_cooldown = true
+			var retract_walls = []
+			for wall in punch_walls:
+				var dot_prod = -wall.normal.dot(player_facing)
+				if dot_prod > 0:
+					retract_walls.append(wall)
+			for wall in retract_walls:
+				wall.retract(1.0 / len(retract_walls))
+			await get_tree().create_timer(0.2).timeout
+			in_cooldown = false
 	
 	if Input.is_action_just_pressed("super"):
 		print("super")
