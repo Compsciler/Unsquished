@@ -147,4 +147,3 @@ shape = SubResource("RectangleShape2D_wk2uk")
 [connection signal="body_exited" from="CharacterBody2D/PunchArea2D" to="CharacterBody2D" method="_on_punch_area_2d_body_exited"]
 [connection signal="body_entered" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_exited"]
-[connection signal="body_shape_entered" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_shape_entered"]
