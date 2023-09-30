@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://ctr3bwat06qje"]
+[gd_scene load_steps=2 format=3 uid="uid://dtni714s3ot4v"]
+
+[ext_resource type="Script" path="res://floor_tiles.gd" id="1_52y3x"]
 
 [node name="FloorTiles" type="Node2D"]
+script = ExtResource("1_52y3x")

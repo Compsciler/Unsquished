@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const SPEED = 300.0
 
@@ -43,6 +44,9 @@ func _physics_process(delta):
 	velocity.x = direction.x * SPEED
 	velocity.y = direction.y * SPEED
 	move_and_slide()
+
+func stun(stun_source):
+	pass
 
 
 func _on_punch_area_2d_body_entered(body):
