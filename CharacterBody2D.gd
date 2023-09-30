@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 
+var punch_walls = []
 var hurt_walls = []
 var player_facing = Vector2.RIGHT
 
@@ -17,9 +18,11 @@ func _physics_process(delta):
 		player_facing = direction
 	# print(player_facing)
 	
-	
+	# Punch
 	if Input.is_action_just_pressed("hit"):
 		print("hit")
+	
+	
 	if Input.is_action_just_pressed("super"):
 		print("super")
 	velocity.x = direction.x * SPEED
@@ -27,10 +30,13 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_area_2d_body_entered(body):
-	if body.is_in_group("wall"):
-		pass
+func _on_punch_area_2d_body_entered(body):
+	if body is Wall:
+		punch_walls.append(body)
 
+func _on_punch_area_2d_body_exited(body):
+	if body is Wall:
+		punch_walls.erase(body)
 
 func _on_hurt_area_2d_body_entered(body):
 	if body is Wall:
@@ -48,3 +54,4 @@ func is_squished():
 	# TODO: change to use normals
 	return (hurt_wall_names.has("LeftWall") and hurt_wall_names.has("RightWall")) or \
 		(hurt_wall_names.has("UpWall") and hurt_wall_names.has("DownWall"))
+

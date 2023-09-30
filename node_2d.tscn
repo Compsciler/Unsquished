@@ -7,8 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rw1c"]
 size = Vector2(127, 127)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qqckv"]
-radius = 134.629
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my7yi"]
+size = Vector2(196, 196)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33o3g"]
 size = Vector2(144, 144)
@@ -37,11 +37,11 @@ texture = ExtResource("1_fke2k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_1rw1c")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="PunchArea2D" type="Area2D" parent="CharacterBody2D"]
 position = Vector2(0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
-shape = SubResource("CircleShape2D_qqckv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PunchArea2D"]
+shape = SubResource("RectangleShape2D_my7yi")
 
 [node name="HurtArea2D" type="Area2D" parent="CharacterBody2D"]
 collision_mask = 2
@@ -101,7 +101,8 @@ texture = ExtResource("1_fke2k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource("WorldBoundaryShape2D_ygoia")
 
-[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CharacterBody2D/PunchArea2D" to="CharacterBody2D" method="_on_punch_area_2d_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/PunchArea2D" to="CharacterBody2D" method="_on_punch_area_2d_body_exited"]
 [connection signal="body_entered" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_exited"]
 [connection signal="body_shape_entered" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_shape_entered"]
