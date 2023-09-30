@@ -5,6 +5,10 @@ const SPEED = 300.0
 var punch_walls = []
 var hurt_walls = []
 var player_facing = Vector2.RIGHT
+@onready var audio_player = $AudioStreamPlayer2D
+@onready var sprite = $Icon
+
+var squished = false
 
 func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("left", "right")
@@ -29,7 +33,7 @@ func _physics_process(delta):
 				retract_walls.append(wall)
 		for wall in retract_walls:
 			print("some walls")
-			wall.retract(1 / len(retract_walls))
+			wall.retract(1.0 / len(retract_walls))
 	
 	
 	if Input.is_action_just_pressed("super"):
@@ -50,7 +54,10 @@ func _on_punch_area_2d_body_exited(body):
 func _on_hurt_area_2d_body_entered(body):
 	if body is Wall:
 		hurt_walls.append(body)
-	print("Is squished: %s" % [is_squished()])
+	if not squished and is_squished():
+		audio_player.play()
+		sprite.hide()
+		squished = true
 
 func _on_hurt_area_2d_body_exited(body):
 	if body is Wall:

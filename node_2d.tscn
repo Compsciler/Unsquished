@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b3yyhj2vejcjk"]
+[gd_scene load_steps=12 format=3 uid="uid://b3yyhj2vejcjk"]
 
 [ext_resource type="Texture2D" uid="uid://d0swy2woght45" path="res://icon.svg" id="1_fke2k"]
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_h34pj"]
+[ext_resource type="AudioStream" uid="uid://dn0xl0r4opcwn" path="res://Audio/wilhelm.mp3" id="3_pq8vx"]
 [ext_resource type="Script" path="res://Wall.gd" id="3_rptvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rw1c"]
@@ -11,7 +12,7 @@ size = Vector2(127, 127)
 size = Vector2(196, 196)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33o3g"]
-size = Vector2(144, 144)
+size = Vector2(96, 96)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bjkvj"]
 normal = Vector2(0, 1)
@@ -42,7 +43,6 @@ position = Vector2(0, 1)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PunchArea2D"]
-position = Vector2(6, -0.5)
 shape = SubResource("RectangleShape2D_my7yi")
 
 [node name="HurtArea2D" type="Area2D" parent="CharacterBody2D"]
@@ -50,6 +50,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtArea2D"]
 shape = SubResource("RectangleShape2D_33o3g")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("3_pq8vx")
 
 [node name="UpWall" type="AnimatableBody2D" parent="." groups=["wall"]]
 position = Vector2(480, 0)
