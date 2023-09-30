@@ -20,7 +20,16 @@ func _physics_process(delta):
 	
 	# Punch
 	if Input.is_action_just_pressed("hit"):
-		print("hit")
+		print("got input")
+		var retract_walls = []
+		for wall in punch_walls:
+			print("some punch walls")
+			var dot_prod = -wall.normal.dot(player_facing)
+			if dot_prod > 0:
+				retract_walls.append(wall)
+		for wall in retract_walls:
+			print("some walls")
+			wall.retract(1 / len(retract_walls))
 	
 	
 	if Input.is_action_just_pressed("super"):

@@ -57,3 +57,7 @@ super={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="wall"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(1, 1, 1, 1)

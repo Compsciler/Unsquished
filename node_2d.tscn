@@ -39,8 +39,10 @@ shape = SubResource("RectangleShape2D_1rw1c")
 
 [node name="PunchArea2D" type="Area2D" parent="CharacterBody2D"]
 position = Vector2(0, 1)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PunchArea2D"]
+position = Vector2(6, -0.5)
 shape = SubResource("RectangleShape2D_my7yi")
 
 [node name="HurtArea2D" type="Area2D" parent="CharacterBody2D"]
@@ -55,6 +57,8 @@ collision_layer = 2
 script = ExtResource("3_rptvh")
 
 [node name="Sprite2D" type="Sprite2D" parent="UpWall"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(0, -640)
 scale = Vector2(10, 10)
 texture = ExtResource("1_fke2k")
@@ -63,6 +67,7 @@ texture = ExtResource("1_fke2k")
 shape = SubResource("WorldBoundaryShape2D_bjkvj")
 
 [node name="DownWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(480, 540)
 collision_layer = 2
 script = ExtResource("3_rptvh")
@@ -76,6 +81,7 @@ texture = ExtResource("1_fke2k")
 shape = SubResource("WorldBoundaryShape2D_e50qt")
 
 [node name="LeftWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(0, 270)
 collision_layer = 2
 script = ExtResource("3_rptvh")
@@ -89,6 +95,7 @@ texture = ExtResource("1_fke2k")
 shape = SubResource("WorldBoundaryShape2D_7y3hh")
 
 [node name="RightWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+modulate = Color(0, 0, 0, 1)
 position = Vector2(960, 270)
 collision_layer = 2
 script = ExtResource("3_rptvh")

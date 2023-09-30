@@ -3,6 +3,12 @@ class_name Wall
 
 @export var speed = 100
 @onready var normal = $CollisionShape2D.get_shape().normal;
+@export var retract_strength = 100
+
+var retracting:bool = false
+@onready var target_position = position
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -10,4 +16,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	position += normal * speed * delta
+	target_position += normal * speed * delta
+	position = position.lerp(target_position, 0.8)
+
+
+func retract(amount: float):
+	target_position -= normal * retract_strength * amount
+	
