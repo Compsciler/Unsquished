@@ -1,149 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3yyhj2vejcjk"]
+[gd_scene load_steps=5 format=3 uid="uid://b3yyhj2vejcjk"]
 
-[ext_resource type="Texture2D" uid="uid://d0swy2woght45" path="res://icon.svg" id="1_fke2k"]
-[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_h34pj"]
-[ext_resource type="AudioStream" uid="uid://dn0xl0r4opcwn" path="res://Audio/wilhelm.mp3" id="3_pq8vx"]
-[ext_resource type="Script" path="res://Wall.gd" id="3_rptvh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rw1c"]
-size = Vector2(64, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_my7yi"]
-size = Vector2(196, 196)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_33o3g"]
-size = Vector2(42, 42)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bjkvj"]
-normal = Vector2(0, 1)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e50qt"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7y3hh"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ygoia"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo5ra"]
-size = Vector2(66, 570)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u3rn"]
-size = Vector2(561.5, 64)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t1y0"]
-size = Vector2(59, 556)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk2uk"]
-size = Vector2(560, 65)
+[ext_resource type="PackedScene" path="res://character_body_2d.tscn" id="1_1flav"]
+[ext_resource type="PackedScene" path="res://walls.tscn" id="2_4k04h"]
+[ext_resource type="PackedScene" path="res://floor_tiles.tscn" id="3_wlm5c"]
+[ext_resource type="PackedScene" uid="uid://cydbij7ixi433" path="res://ui.tscn" id="4_o1f02"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(270, 270)
-collision_mask = 2
-script = ExtResource("1_h34pj")
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_1flav")]
 
-[node name="Icon" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_fke2k")
+[node name="Walls" parent="." instance=ExtResource("2_4k04h")]
+position = Vector2(-1, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_1rw1c")
+[node name="FloorTiles" parent="." instance=ExtResource("3_wlm5c")]
 
-[node name="PunchArea2D" type="Area2D" parent="CharacterBody2D"]
-position = Vector2(0, 1)
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/PunchArea2D"]
-shape = SubResource("RectangleShape2D_my7yi")
-
-[node name="HurtArea2D" type="Area2D" parent="CharacterBody2D"]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HurtArea2D"]
-shape = SubResource("RectangleShape2D_33o3g")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
-stream = ExtResource("3_pq8vx")
-
-[node name="UpWall" type="AnimatableBody2D" parent="." groups=["wall"]]
-position = Vector2(480, 0)
-collision_layer = 2
-script = ExtResource("3_rptvh")
-
-[node name="Sprite2D" type="Sprite2D" parent="UpWall"]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
-position = Vector2(0, -640)
-scale = Vector2(10, 10)
-texture = ExtResource("1_fke2k")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UpWall"]
-shape = SubResource("WorldBoundaryShape2D_bjkvj")
-
-[node name="DownWall" type="AnimatableBody2D" parent="." groups=["wall"]]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(480, 540)
-collision_layer = 2
-script = ExtResource("3_rptvh")
-
-[node name="Sprite2D" type="Sprite2D" parent="DownWall"]
-position = Vector2(0, 640)
-scale = Vector2(10, 10)
-texture = ExtResource("1_fke2k")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DownWall"]
-shape = SubResource("WorldBoundaryShape2D_e50qt")
-
-[node name="LeftWall" type="AnimatableBody2D" parent="." groups=["wall"]]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(0, 270)
-collision_layer = 2
-script = ExtResource("3_rptvh")
-
-[node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
-position = Vector2(-640, 0)
-scale = Vector2(10, 10)
-texture = ExtResource("1_fke2k")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
-shape = SubResource("WorldBoundaryShape2D_7y3hh")
-
-[node name="RightWall" type="AnimatableBody2D" parent="." groups=["wall"]]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(540, 270)
-collision_layer = 2
-script = ExtResource("3_rptvh")
-
-[node name="Sprite2D2" type="Sprite2D" parent="RightWall"]
-position = Vector2(640, 0)
-scale = Vector2(10, 10)
-texture = ExtResource("1_fke2k")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
-shape = SubResource("WorldBoundaryShape2D_ygoia")
-
-[node name="OuterWalls" type="StaticBody2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWalls"]
-position = Vector2(-29, 271)
-shape = SubResource("RectangleShape2D_uo5ra")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="OuterWalls"]
-position = Vector2(274.25, -27)
-shape = SubResource("RectangleShape2D_6u3rn")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="OuterWalls"]
-position = Vector2(565, 270)
-shape = SubResource("RectangleShape2D_2t1y0")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="OuterWalls"]
-position = Vector2(272, 568)
-shape = SubResource("RectangleShape2D_wk2uk")
-
-[connection signal="body_entered" from="CharacterBody2D/PunchArea2D" to="CharacterBody2D" method="_on_punch_area_2d_body_entered"]
-[connection signal="body_exited" from="CharacterBody2D/PunchArea2D" to="CharacterBody2D" method="_on_punch_area_2d_body_exited"]
-[connection signal="body_entered" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_entered"]
-[connection signal="body_exited" from="CharacterBody2D/HurtArea2D" to="CharacterBody2D" method="_on_hurt_area_2d_body_exited"]
+[node name="ui" parent="." instance=ExtResource("4_o1f02")]

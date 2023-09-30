@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dedbh8rwgxbi2"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_0mlqf"]
+[ext_resource type="Texture2D" uid="uid://d0swy2woght45" path="res://icon.svg" id="2_q0nj5"]
+[ext_resource type="AudioStream" uid="uid://dn0xl0r4opcwn" path="res://Audio/wilhelm.mp3" id="3_gq2k7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rw1c"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my7yi"]
+size = Vector2(196, 196)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_33o3g"]
+size = Vector2(42, 42)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(270, 270)
+collision_mask = 2
+script = ExtResource("1_0mlqf")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_q0nj5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1rw1c")
+
+[node name="PunchArea2D" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PunchArea2D"]
+shape = SubResource("RectangleShape2D_my7yi")
+
+[node name="HurtArea2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea2D"]
+shape = SubResource("RectangleShape2D_33o3g")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gq2k7")
+
+[connection signal="body_entered" from="PunchArea2D" to="." method="_on_punch_area_2d_body_entered"]
+[connection signal="body_exited" from="PunchArea2D" to="." method="_on_punch_area_2d_body_exited"]
+[connection signal="body_entered" from="HurtArea2D" to="." method="_on_hurt_area_2d_body_entered"]
+[connection signal="body_exited" from="HurtArea2D" to="." method="_on_hurt_area_2d_body_exited"]

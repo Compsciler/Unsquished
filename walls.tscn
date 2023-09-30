@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://7adadpm72w4m"]
+
+[ext_resource type="Script" path="res://Wall.gd" id="1_wfew1"]
+[ext_resource type="Texture2D" uid="uid://d0swy2woght45" path="res://icon.svg" id="2_m0t88"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bjkvj"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e50qt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7y3hh"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ygoia"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo5ra"]
+size = Vector2(66, 570)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6u3rn"]
+size = Vector2(561.5, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2t1y0"]
+size = Vector2(59, 556)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wk2uk"]
+size = Vector2(560, 65)
+
+[node name="Walls" type="Node2D"]
+position = Vector2(270, 270)
+
+[node name="UpWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+position = Vector2(210, -270)
+collision_layer = 2
+script = ExtResource("1_wfew1")
+
+[node name="Sprite2D" type="Sprite2D" parent="UpWall"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -640)
+scale = Vector2(10, 10)
+texture = ExtResource("2_m0t88")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpWall"]
+shape = SubResource("WorldBoundaryShape2D_bjkvj")
+
+[node name="DownWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(210, 270)
+collision_layer = 2
+script = ExtResource("1_wfew1")
+
+[node name="Sprite2D" type="Sprite2D" parent="DownWall"]
+position = Vector2(0, 640)
+scale = Vector2(10, 10)
+texture = ExtResource("2_m0t88")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownWall"]
+shape = SubResource("WorldBoundaryShape2D_e50qt")
+
+[node name="LeftWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-270, 0)
+collision_layer = 2
+script = ExtResource("1_wfew1")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
+position = Vector2(-640, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("2_m0t88")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource("WorldBoundaryShape2D_7y3hh")
+
+[node name="RightWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(270, 0)
+collision_layer = 2
+script = ExtResource("1_wfew1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="RightWall"]
+position = Vector2(640, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("2_m0t88")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource("WorldBoundaryShape2D_ygoia")
+
+[node name="OuterWalls" type="StaticBody2D" parent="."]
+position = Vector2(-270, -270)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(-29, 271)
+shape = SubResource("RectangleShape2D_uo5ra")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(274.25, -27)
+shape = SubResource("RectangleShape2D_6u3rn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(565, 270)
+shape = SubResource("RectangleShape2D_2t1y0")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="OuterWalls"]
+position = Vector2(272, 568)
+shape = SubResource("RectangleShape2D_wk2uk")

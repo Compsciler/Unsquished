@@ -7,6 +7,7 @@ class_name Wall
 
 var retracting:bool = false
 @onready var target_position = position
+@onready var starting_position = position
 
 
 # Called when the node enters the scene tree for the first time.
