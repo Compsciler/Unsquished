@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdfkv34kf3f1v"
-path="res://.godot/imported/spike.png-8844064b2295cf099560174aeb6693bb.ctex"
+path="res://.godot/imported/spike.png-45e87d6c7fa6880bbf04887ef13a6139.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Visuals2/spike.png"
-dest_files=["res://.godot/imported/spike.png-8844064b2295cf099560174aeb6693bb.ctex"]
+source_file="res://Art/Hazards/spike.png"
+dest_files=["res://.godot/imported/spike.png-45e87d6c7fa6880bbf04887ef13a6139.ctex"]
 
 [params]
 
