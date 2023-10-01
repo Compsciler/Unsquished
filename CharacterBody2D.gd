@@ -6,6 +6,8 @@ const SPEED = 300.0
 var punch_walls = []
 var hurt_walls = []
 var player_facing = Vector2.RIGHT
+var is_stunned:bool = false
+
 @onready var audio_player = $AudioStreamPlayer2D
 @onready var visuals = $Visuals
 @onready var body_sprite = $Visuals/BodySprite
@@ -25,6 +27,8 @@ func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("left", "right")
 	var vertical_direction = Input.get_axis("up", "down")
 	var direction = Vector2(horizontal_direction, vertical_direction).normalized();
+	if is_stunned:
+		direction = Vector2.ZERO
 	if (!is_attacking):
 		if direction.is_zero_approx():
 			if not (player_facing.x == 0 or player_facing.y == 0):
@@ -61,7 +65,7 @@ func _physics_process(delta):
 		
 	
 	# Punch
-	if Input.is_action_just_pressed("hit"):
+	if Input.is_action_just_pressed("hit") && !is_stunned:
 		if !is_attacking:
 			is_attacking = true
 			var retract_walls = []
@@ -87,7 +91,17 @@ func _physics_process(delta):
 	move_and_slide()
 
 func stun(stun_source):
-	pass
+	is_attacking = false
+	is_stunned = true
+	visuals.modulate = Color(1,1,1, 0.0)
+	await get_tree().create_timer(0.2)
+	visuals.modulate = Color(1,1,1, 1.0)
+	await get_tree().create_timer(0.2)
+	visuals.modulate = Color(1,1,1, 0.0)
+	await get_tree().create_timer(0.2)
+	visuals.modulate = Color(1,1,1, 1.0)
+	is_stunned = false
+	
 
 
 func _on_punch_area_2d_body_entered(body):
