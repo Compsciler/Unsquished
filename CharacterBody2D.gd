@@ -71,7 +71,6 @@ func _physics_process(delta):
 			in_cooldown = false
 	
 	if Input.is_action_just_pressed("super") and super_count > 0:
-		print(len(all_walls))
 		for wall in all_walls:
 			wall.retract(1.5)
 		
