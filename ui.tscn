@@ -1,9 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://cydbij7ixi433"]
+[gd_scene load_steps=7 format=3 uid="uid://cydbij7ixi433"]
 
 [ext_resource type="Texture2D" uid="uid://dwi2tmrtuxep4" path="res://Art/ui_frame.png" id="1_8cxuw"]
 [ext_resource type="Script" path="res://ui.gd" id="1_lvray"]
 [ext_resource type="FontFile" uid="uid://dc0l4u2m5v43n" path="res://joystix monospace.otf" id="2_sqlv1"]
 [ext_resource type="Texture2D" uid="uid://cnwmjv3rvheor" path="res://Art/charge.png" id="3_h6qhw"]
+[ext_resource type="Shader" path="res://ui.gdshader" id="5_afecn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oi13u"]
+shader = ExtResource("5_afecn")
+shader_parameter/r_displacement = Vector2(1, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-1, 0)
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.179
+shader_parameter/resolution = Vector2(633.325, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.0
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/vignette_opacity = 0.5
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_lvray")
@@ -93,5 +121,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_sqlv1")
 theme_override_font_sizes/font_size = 50
 text = "SPACE"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_oi13u")
+offset_left = 16.0
+offset_top = 118.0
+offset_right = 525.0
+offset_bottom = 625.0
+color = Color(1, 1, 1, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

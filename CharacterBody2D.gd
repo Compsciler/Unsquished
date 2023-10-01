@@ -28,6 +28,7 @@ var in_cooldown = false
 @export var super_count = 3
 
 signal charge_change
+signal hit_wall
 
 func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("left", "right")
@@ -81,6 +82,8 @@ func _physics_process(delta):
 					retract_walls.append(wall)
 			for wall in retract_walls:
 				wall.retract(1.0 / len(retract_walls))
+			if len(retract_walls) > 0:
+				emit_signal("hit_wall")
 			punch_audio_player.play()
 				
 	if Input.is_action_just_pressed("super") and super_count > 0:

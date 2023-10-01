@@ -55,4 +55,7 @@ stream = ExtResource("6_h4jkm")
 volume_db = -12.0
 autoplay = true
 
+[connection signal="charge_change" from="CharacterBody2D" to="ui" method="_on_character_body_2d_charge_change"]
+[connection signal="hit_wall" from="CharacterBody2D" to="ui" method="_on_character_body_2d_hit_wall"]
+
 [editable path="Walls"]
