@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b457k2tuuax1e"]
+
+[ext_resource type="Script" path="res://laser_tiles.gd" id="1_2twcx"]
+
+[node name="LaserTiles" type="Node2D"]
+script = ExtResource("1_2twcx")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout" flags=18]

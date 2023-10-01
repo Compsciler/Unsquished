@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bptfjfu26d3n5"]
+
+[ext_resource type="Script" path="res://spike.gd" id="1_86hly"]
+[ext_resource type="Texture2D" uid="uid://d0swy2woght45" path="res://icon.svg" id="2_wkwbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uulyo"]
+
+[node name="Laser" type="Node2D"]
+position = Vector2(69, 44)
+script = ExtResource("1_86hly")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_uulyo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.32, 0.2)
+texture = ExtResource("2_wkwbl")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
