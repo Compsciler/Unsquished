@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3yyhj2vejcjk"]
+[gd_scene load_steps=7 format=3 uid="uid://b3yyhj2vejcjk"]
 
 [ext_resource type="PackedScene" uid="uid://dedbh8rwgxbi2" path="res://character_body_2d.tscn" id="1_1flav"]
 [ext_resource type="PackedScene" uid="uid://7adadpm72w4m" path="res://walls.tscn" id="2_4k04h"]
 [ext_resource type="PackedScene" uid="uid://b457k2tuuax1e" path="res://laser_tiles.tscn" id="3_t65hy"]
 [ext_resource type="PackedScene" uid="uid://dtni714s3ot4v" path="res://floor_tiles.tscn" id="3_wlm5c"]
 [ext_resource type="PackedScene" uid="uid://cydbij7ixi433" path="res://ui.tscn" id="4_o1f02"]
+[ext_resource type="AudioStream" uid="uid://bv1o2v5rfq5vn" path="res://Audio/limited_space_v1.mp3" id="6_h4jkm"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(5, 110)
@@ -40,5 +41,10 @@ position = Vector2(543, 270)
 position = Vector2(272, 543)
 
 [node name="ui" parent="." instance=ExtResource("4_o1f02")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_h4jkm")
+volume_db = -12.0
+autoplay = true
 
 [editable path="Walls"]

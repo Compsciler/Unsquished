@@ -9,6 +9,8 @@ var player_facing = Vector2.RIGHT
 var is_stunned:bool = false
 
 @onready var audio_player = $AudioStreamPlayer2D
+@onready var punch_audio_player = $PunchAudioStreamPlayer2D
+@onready var super_audio_player = $SuperAudioStreamPlayer2D
 @onready var visuals = $Visuals
 @onready var body_sprite = $Visuals/BodySprite
 @onready var fist_sprite = $Visuals/FistSprite
@@ -77,6 +79,7 @@ func _physics_process(delta):
 					retract_walls.append(wall)
 			for wall in retract_walls:
 				wall.retract(1.0 / len(retract_walls))
+			punch_audio_player.play()
 				
 	if Input.is_action_just_pressed("super") and super_count > 0:
 		for wall in all_walls:
@@ -86,6 +89,7 @@ func _physics_process(delta):
 		for spike_or_laser in all_spikes_and_lasers:
 			spike_or_laser.get_supered(position)
 		
+		super_audio_player.play()
 		super_count -= 1
 		
 	velocity.x = direction.x * SPEED
