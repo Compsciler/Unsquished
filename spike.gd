@@ -11,7 +11,7 @@ var is_damaging = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(position)
-	sprite.modulate = Color(1, 1, 1, 0.2)
+	sprite.modulate.a = 0.2
 #	var tween = create_tween()
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.6), 0.5)
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.2), 0.5)
@@ -28,7 +28,7 @@ func _ready():
 	sprite.show()
 	
 	is_damaging = true
-	sprite.modulate = Color.WHITE
+	sprite.modulate.a = 1.0
 	await get_tree().create_timer(damage_time).timeout
 	queue_free()
 

@@ -42,5 +42,6 @@ func spawn(idx, is_row):
 
 func _on_timer_timeout():
 	spawn_random()
-	spawn_rate = max(spawn_rate_increase, spawn_rate_min)
+	spawn_rate += spawn_rate_increase
+	spawn_rate = max(spawn_rate, spawn_rate_min)
 	timer.wait_time = spawn_rate

@@ -2,17 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://dedbh8rwgxbi2" path="res://character_body_2d.tscn" id="1_1flav"]
 [ext_resource type="PackedScene" uid="uid://7adadpm72w4m" path="res://walls.tscn" id="2_4k04h"]
-[ext_resource type="PackedScene" path="res://laser_tiles.tscn" id="3_t65hy"]
-[ext_resource type="PackedScene" uid="uid://ctr3bwat06qje" path="res://floor_tiles.tscn" id="3_wlm5c"]
-[ext_resource type="PackedScene" path="res://ui.tscn" id="4_o1f02"]
+[ext_resource type="PackedScene" uid="uid://b457k2tuuax1e" path="res://laser_tiles.tscn" id="3_t65hy"]
+[ext_resource type="PackedScene" uid="uid://dtni714s3ot4v" path="res://floor_tiles.tscn" id="3_wlm5c"]
+[ext_resource type="PackedScene" uid="uid://cydbij7ixi433" path="res://ui.tscn" id="4_o1f02"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_1flav")]
 
 [node name="FloorTiles" parent="." instance=ExtResource("3_wlm5c")]
 
 [node name="LaserTiles" parent="." instance=ExtResource("3_t65hy")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_1flav")]
 
 [node name="Walls" parent="." instance=ExtResource("2_4k04h")]
 position = Vector2(275, 274)
