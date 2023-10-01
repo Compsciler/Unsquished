@@ -4,10 +4,10 @@ extends Node2D
 
 # Invincibility settings
 @export var offset_start = 0.0
-@export var rate_start = 5.0
-@export var rate_min = 3.5
-@export var rate_increase = -0.1
-@export var invincibility_period = 3.0
+@export var rate_start = 3.47826
+@export var rate_min = 3.47826
+@export var rate_increase = 0.0
+@export var invincibility_period = 2.608695
 var rate = rate_start
 
 @onready var timer = $Timer
@@ -33,4 +33,4 @@ func _on_timer_timeout():
 	rate = max(rate, rate_min)
 	timer.wait_time = rate
 	timer.start()
-	# print(timer.wait_time)
+	print(timer.wait_time, " ", rate)

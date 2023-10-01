@@ -10,6 +10,7 @@ var is_stunned:bool = false
 
 @onready var audio_player = $AudioStreamPlayer2D
 @onready var punch_audio_player = $PunchAudioStreamPlayer2D
+@onready var metal_audio_player = $MetalAudioStreamPlayer2D
 @onready var super_audio_player = $SuperAudioStreamPlayer2D
 @onready var visuals = $Visuals
 @onready var body_sprite = $Visuals/BodySprite
@@ -76,8 +77,10 @@ func _physics_process(delta):
 		if !is_attacking:
 			is_attacking = true
 			var retract_walls = []
+			var invincible_walls = []
 			for wall in punch_walls:
 				if wall.is_invincible:
+					invincible_walls.append(wall)
 					continue
 				
 				var dot_prod = -wall.normal.dot(player_facing)
@@ -87,7 +90,12 @@ func _physics_process(delta):
 				wall.retract(1.0 / len(retract_walls))
 			if len(retract_walls) > 0:
 				emit_signal("hit_wall")
-			punch_audio_player.play()
+			if len(invincible_walls) > 0 and len (retract_walls) == 0:
+				var random_pitch_scale = 0.9 + randf() * 0.2
+				metal_audio_player.pitch_scale = random_pitch_scale
+				metal_audio_player.play()
+			else:
+				punch_audio_player.play()
 				
 	if Input.is_action_just_pressed("super") and super_count > 0 and not squished:
 		for wall in all_walls:
