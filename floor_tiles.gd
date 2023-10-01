@@ -4,6 +4,7 @@ extends Node2D
 var tile_size = 540.0 / GRID_SIZE
 var spike = preload("res://spike.tscn")
 
+@export var spawn_offset_start = 0.0
 @export var spawn_rate_start = 5.0
 @export var spawn_rate_min = 2.5
 @export var spawn_rate_increase = -0.1
@@ -13,7 +14,8 @@ var spawn_rate = spawn_rate_start
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	Engine.time_scale = 10.0
+	timer.wait_time = spawn_rate_start + spawn_offset_start
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
