@@ -21,6 +21,8 @@ func _ready():
 func _physics_process(delta):
 	target_position += normal * speed * delta
 	position = position.lerp(target_position, 0.8)
+	speed += speed_increase_rate * delta
+	speed = min(speed, speed_max)
 
 
 func retract(amount: float):

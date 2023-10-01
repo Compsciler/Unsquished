@@ -1,18 +1,18 @@
 [gd_scene load_steps=8 format=3 uid="uid://dedbh8rwgxbi2"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_0mlqf"]
-[ext_resource type="SpriteFrames" uid="uid://cxy66xv3deolf" path="res://Art/character_body_sprites.tres" id="2_4h3dc"]
+[ext_resource type="SpriteFrames" path="res://Art/character_body_sprites.tres" id="2_4h3dc"]
 [ext_resource type="AudioStream" uid="uid://dn0xl0r4opcwn" path="res://Audio/wilhelm.mp3" id="3_gq2k7"]
-[ext_resource type="SpriteFrames" uid="uid://duyg6vk4g5nvb" path="res://Art/character_fist_sprites.tres" id="3_ij4ay"]
+[ext_resource type="SpriteFrames" path="res://Art/character_fist_sprites.tres" id="3_ij4ay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rw1c"]
-size = Vector2(64, 64)
+size = Vector2(48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my7yi"]
-size = Vector2(196, 196)
+size = Vector2(144, 144)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33o3g"]
-size = Vector2(42, 42)
+size = Vector2(28, 28)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(270, 270)
@@ -26,14 +26,15 @@ texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_4h3dc")
 animation = &"right_run"
-frame = 2
-frame_progress = 0.861879
+frame_progress = 0.547654
 
 [node name="FistSprite" type="AnimatedSprite2D" parent="Visuals"]
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("3_ij4ay")
 animation = &"right_idle_attack"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1rw1c")
