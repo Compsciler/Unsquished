@@ -105,6 +105,8 @@ func _on_hurt_area_2d_body_entered(body):
 		audio_player.play()
 		visuals.hide()
 		squished = true
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file("res://end_scene.tscn")
 
 func _on_hurt_area_2d_body_exited(body):
 	if body is Wall:

@@ -32,6 +32,7 @@ size = Vector2(560, 65)
 position = Vector2(210, -270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 35
 
 [node name="Sprite2D" type="Sprite2D" parent="UpWall"]
 modulate = Color(0, 0, 0, 1)
@@ -48,6 +49,7 @@ modulate = Color(0, 0, 0, 1)
 position = Vector2(210, 270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 35
 
 [node name="Sprite2D" type="Sprite2D" parent="DownWall"]
 position = Vector2(-88.5, 5453.5)
@@ -62,6 +64,7 @@ modulate = Color(0, 0, 0, 1)
 position = Vector2(-270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 35
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
 position = Vector2(-4730, -42.9998)
@@ -76,6 +79,7 @@ modulate = Color(0, 0, 0, 1)
 position = Vector2(270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 35
 
 [node name="Sprite2D2" type="Sprite2D" parent="RightWall"]
 position = Vector2(5043.5, 16.4997)
