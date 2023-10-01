@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cydbij7ixi433"]
+[gd_scene load_steps=5 format=3 uid="uid://cydbij7ixi433"]
 
 [ext_resource type="Texture2D" uid="uid://dwi2tmrtuxep4" path="res://Art/ui_frame.png" id="1_8cxuw"]
+[ext_resource type="Script" path="res://ui.gd" id="1_lvray"]
+[ext_resource type="FontFile" uid="uid://dc0l4u2m5v43n" path="res://joystix monospace.otf" id="2_sqlv1"]
+[ext_resource type="Texture2D" uid="uid://cnwmjv3rvheor" path="res://Art/charge.png" id="3_h6qhw"]
 
 [node name="ui" type="CanvasLayer"]
+script = ExtResource("1_lvray")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -12,3 +16,66 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_8cxuw")
+
+[node name="Label2" type="Label" parent="TextureRect"]
+layout_mode = 2
+offset_left = 305.0
+offset_top = 14.0
+offset_right = 431.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sqlv1")
+theme_override_font_sizes/font_size = 25
+text = "Score:"
+
+[node name="Score" type="Label" parent="TextureRect"]
+layout_mode = 2
+offset_left = 309.0
+offset_top = 49.0
+offset_right = 435.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sqlv1")
+theme_override_font_sizes/font_size = 25
+text = "0
+
+"
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 2
+offset_left = 45.0
+offset_top = 13.0
+offset_right = 551.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sqlv1")
+theme_override_font_sizes/font_size = 23
+text = "Charge
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
+layout_mode = 2
+offset_left = 39.0
+offset_top = 46.0
+offset_right = 176.0
+offset_bottom = 89.0
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_h6qhw")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_h6qhw")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="TextureRect/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_h6qhw")
+expand_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

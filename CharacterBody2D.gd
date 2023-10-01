@@ -27,6 +27,8 @@ var in_cooldown = false
 
 @export var super_count = 3
 
+signal charge_change
+
 func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("left", "right")
 	var vertical_direction = Input.get_axis("up", "down")
@@ -91,6 +93,7 @@ func _physics_process(delta):
 		
 		super_audio_player.play()
 		super_count -= 1
+		emit_signal("charge_change", super_count)
 		
 	velocity.x = direction.x * SPEED
 	velocity.y = direction.y * SPEED
