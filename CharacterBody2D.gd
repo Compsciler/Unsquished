@@ -90,7 +90,7 @@ func _physics_process(delta):
 	velocity.y = direction.y * SPEED
 	move_and_slide()
 
-func stun(stun_source):
+func stun():
 	is_attacking = false
 	is_stunned = true
 	visuals.modulate = Color(1,1,1, 0.0)
