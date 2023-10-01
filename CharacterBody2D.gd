@@ -77,6 +77,9 @@ func _physics_process(delta):
 			is_attacking = true
 			var retract_walls = []
 			for wall in punch_walls:
+				if wall.is_invincible:
+					continue
+				
 				var dot_prod = -wall.normal.dot(player_facing)
 				if dot_prod > 0:
 					retract_walls.append(wall)
@@ -89,6 +92,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("super") and super_count > 0 and not squished:
 		for wall in all_walls:
 			wall.retract(1.5)
+			wall.get_supered(position)
 		
 		var all_spikes_and_lasers = get_tree().get_nodes_in_group("trap")
 		for spike_or_laser in all_spikes_and_lasers:

@@ -78,7 +78,7 @@ offset_bottom = 44.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_sqlv1")
 theme_override_font_sizes/font_size = 23
-text = "Charge
+text = "SPACE
 "
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]

@@ -11,6 +11,11 @@ var retracting:bool = false
 @onready var target_position = position
 @onready var starting_position = position
 
+var is_invincible = false
+
+@onready var sprite = $Sprite2D
+@onready var base_color = modulate
+@export var invincible_color = Color(1, 1, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,4 +32,18 @@ func _physics_process(delta):
 
 func retract(amount: float):
 	target_position -= normal * retract_strength * amount
-	
+
+
+func make_invincible(duration):
+	is_invincible = true
+	modulate = invincible_color
+	z_index = 0
+	await get_tree().create_timer(duration).timeout
+	is_invincible = false
+	modulate = base_color
+	z_index = 1
+
+func get_supered(player_pos):
+	await get_tree().create_timer(0.075).timeout
+	modulate = base_color
+	is_invincible = false

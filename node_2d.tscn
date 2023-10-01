@@ -14,7 +14,7 @@ position = Vector2(5, 110)
 [node name="GrassField" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="GrassField"]
-position = Vector2(264, 254)
+position = Vector2(264, 261)
 scale = Vector2(0.596644, 0.596644)
 texture = ExtResource("1_w5w76")
 
@@ -40,7 +40,7 @@ position = Vector2(-262, 0)
 position = Vector2(239, 0)
 
 [node name="CollisionShape2D" parent="Walls/OuterWalls" index="0"]
-position = Vector2(-26, 271)
+position = Vector2(-18, 271)
 
 [node name="CollisionShape2D3" parent="Walls/OuterWalls" index="2"]
 position = Vector2(543, 270)

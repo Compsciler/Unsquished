@@ -18,6 +18,7 @@ var spawn_rate = spawn_rate_start
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = spawn_rate_start + spawn_offset_start
+	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

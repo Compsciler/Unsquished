@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://7adadpm72w4m"]
+[gd_scene load_steps=12 format=3 uid="uid://7adadpm72w4m"]
 
+[ext_resource type="Script" path="res://wall_manager.gd" id="1_fkiev"]
 [ext_resource type="Script" path="res://Wall.gd" id="1_wfew1"]
-[ext_resource type="Texture2D" uid="uid://d0swy2woght45" path="res://icon.svg" id="2_m0t88"]
+[ext_resource type="Texture2D" uid="uid://bxwnwtjkrc6qq" path="res://Art/wall_square.png" id="3_tgiqb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bjkvj"]
 normal = Vector2(0, 1)
@@ -15,7 +16,7 @@ normal = Vector2(1, 0)
 normal = Vector2(-1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo5ra"]
-size = Vector2(66, 570)
+size = Vector2(50, 570)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u3rn"]
 size = Vector2(561.5, 64)
@@ -27,24 +28,26 @@ size = Vector2(59, 556)
 size = Vector2(560, 65)
 
 [node name="Walls" type="Node2D"]
+script = ExtResource("1_fkiev")
 
 [node name="UpWall" type="AnimatableBody2D" parent="." groups=["wall"]]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
 position = Vector2(210, -270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
 
 [node name="Sprite2D" type="Sprite2D" parent="UpWall"]
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
 position = Vector2(-324.5, -5309)
 scale = Vector2(92.1953, 82.9531)
-texture = ExtResource("2_m0t88")
+texture = ExtResource("3_tgiqb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpWall"]
 shape = SubResource("WorldBoundaryShape2D_bjkvj")
 
 [node name="DownWall" type="AnimatableBody2D" parent="." groups=["wall"]]
 modulate = Color(0, 0, 0, 1)
+z_index = 1
 position = Vector2(210, 270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
@@ -52,13 +55,14 @@ script = ExtResource("1_wfew1")
 [node name="Sprite2D" type="Sprite2D" parent="DownWall"]
 position = Vector2(-88.5, 5453.5)
 scale = Vector2(89.4141, 85.2109)
-texture = ExtResource("2_m0t88")
+texture = ExtResource("3_tgiqb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownWall"]
 shape = SubResource("WorldBoundaryShape2D_e50qt")
 
 [node name="LeftWall" type="AnimatableBody2D" parent="." groups=["wall"]]
 modulate = Color(0, 0, 0, 1)
+z_index = 1
 position = Vector2(-270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
@@ -66,21 +70,22 @@ script = ExtResource("1_wfew1")
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
 position = Vector2(-4730, -42.9998)
 scale = Vector2(73.9062, 95.4375)
-texture = ExtResource("2_m0t88")
+texture = ExtResource("3_tgiqb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 shape = SubResource("WorldBoundaryShape2D_7y3hh")
 
 [node name="RightWall" type="AnimatableBody2D" parent="." groups=["wall"]]
 modulate = Color(0, 0, 0, 1)
+z_index = 1
 position = Vector2(270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
 
-[node name="Sprite2D2" type="Sprite2D" parent="RightWall"]
+[node name="Sprite2D" type="Sprite2D" parent="RightWall"]
 position = Vector2(5043.5, 16.4997)
 scale = Vector2(78.8047, 97.1953)
-texture = ExtResource("2_m0t88")
+texture = ExtResource("3_tgiqb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource("WorldBoundaryShape2D_ygoia")
@@ -104,3 +109,8 @@ shape = SubResource("RectangleShape2D_2t1y0")
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="OuterWalls"]
 position = Vector2(272, 568)
 shape = SubResource("RectangleShape2D_wk2uk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
