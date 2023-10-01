@@ -54,7 +54,7 @@ offset_bottom = 47.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_sqlv1")
 theme_override_font_sizes/font_size = 25
-text = "Score:"
+text = "Score"
 
 [node name="Score" type="Label" parent="TextureRect"]
 layout_mode = 2
@@ -117,14 +117,14 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.165, 1.165)
 pivot_offset = Vector2(102.785, 31.37)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_sqlv1")
 theme_override_font_sizes/font_size = 50
 text = "SPACE"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_oi13u")
-offset_left = 16.0
+offset_left = 15.0
 offset_top = 118.0
 offset_right = 525.0
 offset_bottom = 625.0

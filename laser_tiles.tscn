@@ -4,7 +4,7 @@
 
 [node name="LaserTiles" type="Node2D"]
 script = ExtResource("1_2twcx")
-spawn_offset_start = 4.0
+spawn_offset_start = 7.5
 spawn_rate_increase = -0.25
 
 [node name="Timer" type="Timer" parent="."]

@@ -1,11 +1,14 @@
 extends AnimatableBody2D
 class_name Wall
 
-@export var speed = 35
-@export var speed_max = 45
+@export var speed = 35.0
+@export var speed_max = 45.0
+@export var speed_increase_start_offset = 60.0
 @export var speed_increase_rate = 0.25
 @onready var normal = $CollisionShape2D.get_shape().normal;
 @export var retract_strength = 100
+
+var time = 0
 
 var retracting:bool = false
 @onready var target_position = position
@@ -26,8 +29,10 @@ func _ready():
 func _physics_process(delta):
 	target_position += normal * speed * delta
 	position = position.lerp(target_position, 0.8)
-	speed += speed_increase_rate * delta
-	speed = min(speed, speed_max)
+	if time >= speed_increase_start_offset:
+		speed += speed_increase_rate * delta
+		speed = min(speed, speed_max)
+	time += delta
 
 
 func retract(amount: float):

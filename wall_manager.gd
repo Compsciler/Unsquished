@@ -14,12 +14,13 @@ var rate = rate_start
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer.wait_time = rate_start + offset_start
+	timer.wait_time = offset_start
 	timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# print(timer.wait_time)
 	pass
 
 func make_random_wall_invinicble():
@@ -31,4 +32,5 @@ func _on_timer_timeout():
 	rate += rate_increase
 	rate = max(rate, rate_min)
 	timer.wait_time = rate
+	timer.start()
 	# print(timer.wait_time)

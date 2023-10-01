@@ -29,8 +29,7 @@ size = Vector2(560, 65)
 
 [node name="Walls" type="Node2D"]
 script = ExtResource("1_fkiev")
-offset_start = 34.85
-rate_increase = 0.0
+offset_start = 2.0
 
 [node name="UpWall" type="AnimatableBody2D" parent="." groups=["wall"]]
 modulate = Color(0, 0, 0, 1)
@@ -113,7 +112,6 @@ position = Vector2(272, 568)
 shape = SubResource("RectangleShape2D_wk2uk")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
+wait_time = 5.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

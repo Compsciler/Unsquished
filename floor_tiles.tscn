@@ -4,6 +4,7 @@
 
 [node name="FloorTiles" type="Node2D"]
 script = ExtResource("1_52y3x")
+spawn_offset_start = 5.0
 spawn_rate_min = 1.5
 spawn_rate_increase = -0.25
 
