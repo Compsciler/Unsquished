@@ -7,7 +7,9 @@ var punch_walls = []
 var hurt_walls = []
 var player_facing = Vector2.RIGHT
 @onready var audio_player = $AudioStreamPlayer2D
-@onready var sprite = $Icon
+@onready var visuals = $Visuals
+@onready var body_sprite = $Visuals/BodySprite
+@onready var fist_sprite = $Visuals/FistSprite
 
 var squished = false
 
@@ -23,7 +25,32 @@ func _physics_process(delta):
 			player_facing = player_facing.normalized()
 	else:
 		player_facing = direction
-	# print(player_facing)
+	
+	body_sprite.flip_h = player_facing.x < 0
+	fist_sprite.flip_h = player_facing.x < 0
+	
+	if player_facing.x != 0:
+		if direction != Vector2.ZERO:
+			body_sprite.play("right_run")
+			fist_sprite.play("right_run_normal")
+		else:
+			body_sprite.play("right_idle")
+			fist_sprite.play("right_idle_normal")
+	elif player_facing.y > 0:
+		if direction != Vector2.ZERO:
+			body_sprite.play("front_run")
+			fist_sprite.play("front_run_normal")
+		else:
+			body_sprite.play("front_idle")
+			fist_sprite.play("front_idle_normal")
+	elif player_facing.y < 0:
+		if direction != Vector2.ZERO:
+			body_sprite.play("back_run")
+			fist_sprite.play("back_run_normal")
+		else:
+			body_sprite.play("back_idle")
+			fist_sprite.play("back_idle_normal")
+		
 	
 	# Punch
 	if Input.is_action_just_pressed("hit"):
@@ -62,7 +89,7 @@ func _on_hurt_area_2d_body_entered(body):
 		hurt_walls.append(body)
 	if not squished and is_squished():
 		audio_player.play()
-		sprite.hide()
+		visuals.hide()
 		squished = true
 
 func _on_hurt_area_2d_body_exited(body):
