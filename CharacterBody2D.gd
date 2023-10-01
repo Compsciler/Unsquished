@@ -72,7 +72,7 @@ func _physics_process(delta):
 		
 	
 	# Punch
-	if Input.is_action_just_pressed("hit") && !is_stunned:
+	if Input.is_action_just_pressed("hit") && !is_stunned && !squished:
 		if !is_attacking:
 			is_attacking = true
 			var retract_walls = []
@@ -86,7 +86,7 @@ func _physics_process(delta):
 				emit_signal("hit_wall")
 			punch_audio_player.play()
 				
-	if Input.is_action_just_pressed("super") and super_count > 0:
+	if Input.is_action_just_pressed("super") and super_count > 0 and not squished:
 		for wall in all_walls:
 			wall.retract(1.5)
 		
