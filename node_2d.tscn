@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cydbij7ixi433" path="res://ui.tscn" id="4_o1f02"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(5, 110)
 
 [node name="FloorTiles" parent="." instance=ExtResource("3_wlm5c")]
 
@@ -17,4 +18,27 @@
 [node name="Walls" parent="." instance=ExtResource("2_4k04h")]
 position = Vector2(275, 274)
 
+[node name="UpWall" parent="Walls" index="0"]
+position = Vector2(210, -258)
+
+[node name="DownWall" parent="Walls" index="1"]
+position = Vector2(212, 236)
+
+[node name="LeftWall" parent="Walls" index="2"]
+position = Vector2(-262, 0)
+
+[node name="RightWall" parent="Walls" index="3"]
+position = Vector2(239, 0)
+
+[node name="CollisionShape2D" parent="Walls/OuterWalls" index="0"]
+position = Vector2(-26, 271)
+
+[node name="CollisionShape2D3" parent="Walls/OuterWalls" index="2"]
+position = Vector2(543, 270)
+
+[node name="CollisionShape2D4" parent="Walls/OuterWalls" index="3"]
+position = Vector2(272, 543)
+
 [node name="ui" parent="." instance=ExtResource("4_o1f02")]
+
+[editable path="Walls"]

@@ -22,7 +22,7 @@ GameManager="*res://score.gd"
 [display]
 
 window/size/viewport_width=540
-window/size/viewport_height=540
+window/size/viewport_height=640
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
