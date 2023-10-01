@@ -5,9 +5,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uulyo"]
 
-[node name="Laser" type="Node2D" groups=["laser", "trap"]]
+[node name="Laser" type="Node2D"]
 position = Vector2(69, 44)
 script = ExtResource("1_86hly")
+warning_time = null
+damage_time = null
 
 [node name="Area2D" type="Area2D" parent="."]
 monitoring = false

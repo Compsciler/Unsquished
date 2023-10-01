@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3yyhj2vejcjk"]
+
+[ext_resource type="PackedScene" uid="uid://byx2s3f6qa315" path="res://character_body_2d.tscn" id="1_1flav"]
+[ext_resource type="PackedScene" uid="uid://rie44lsumvv6" path="res://walls.tscn" id="2_4k04h"]
+[ext_resource type="PackedScene" uid="uid://b457k2tuuax1e" path="res://laser_tiles.tscn" id="3_t65hy"]
+[ext_resource type="PackedScene" uid="uid://dtni714s3ot4v" path="res://floor_tiles.tscn" id="3_wlm5c"]
+[ext_resource type="PackedScene" path="res://ui.tscn" id="4_o1f02"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_1flav")]
+
+[node name="FloorTiles" parent="." instance=ExtResource("3_wlm5c")]
+
+[node name="LaserTiles" parent="." instance=ExtResource("3_t65hy")]
+
+[node name="Walls" parent="." instance=ExtResource("2_4k04h")]
+position = Vector2(275, 274)
+
+[node name="ui" parent="." instance=ExtResource("4_o1f02")]

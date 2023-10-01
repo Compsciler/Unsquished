@@ -9,9 +9,13 @@ var player_facing = Vector2.RIGHT
 @onready var audio_player = $AudioStreamPlayer2D
 @onready var sprite = $Icon
 
+@onready var all_walls = get_tree().get_nodes_in_group("wall")
+
 var squished = false
 
 var in_cooldown = false
+
+@export var super_count = 3
 
 func _physics_process(delta):
 	var horizontal_direction = Input.get_axis("left", "right")
@@ -39,8 +43,17 @@ func _physics_process(delta):
 			await get_tree().create_timer(0.2).timeout
 			in_cooldown = false
 	
-	if Input.is_action_just_pressed("super"):
-		print("super")
+	if Input.is_action_just_pressed("super") and super_count > 0:
+		print(len(all_walls))
+		for wall in all_walls:
+			wall.retract(1.5)
+		
+		var all_spikes_and_lasers = get_tree().get_nodes_in_group("trap")
+		for spike_or_laser in all_spikes_and_lasers:
+			spike_or_laser.get_supered(position)
+		
+		super_count -= 1
+		
 	velocity.x = direction.x * SPEED
 	velocity.y = direction.y * SPEED
 	move_and_slide()
