@@ -13,6 +13,8 @@ var is_stunned:bool = false
 @onready var body_sprite = $Visuals/BodySprite
 @onready var fist_sprite = $Visuals/FistSprite
 
+@onready var stun_time = 1.0
+
 var is_attacking: bool = false
 
 @onready var all_walls = get_tree().get_nodes_in_group("wall")
@@ -49,19 +51,19 @@ func _physics_process(delta):
 			body_sprite.play("right_run")
 		else:
 			body_sprite.play("right_idle")
-		fist_sprite.play("right_idle" + modifier)
+		fist_sprite.play("right_run" + modifier)
 	elif player_facing.y > 0:
 		if direction != Vector2.ZERO:
 			body_sprite.play("front_run")
 		else:
 			body_sprite.play("front_idle")
-		fist_sprite.play("front_idle" + modifier)
+		fist_sprite.play("front_run" + modifier)
 	elif player_facing.y < 0:
 		if direction != Vector2.ZERO:
 			body_sprite.play("back_run")
 		else:
 			body_sprite.play("back_idle")
-		fist_sprite.play("back_idle" + modifier)
+		fist_sprite.play("back_run" + modifier)
 		
 	
 	# Punch
@@ -94,11 +96,15 @@ func stun():
 	is_attacking = false
 	is_stunned = true
 	visuals.modulate = Color(1,1,1, 0.0)
-	await get_tree().create_timer(0.2)
+	await get_tree().create_timer(stun_time/5.0).timeout
 	visuals.modulate = Color(1,1,1, 1.0)
-	await get_tree().create_timer(0.2)
+	await get_tree().create_timer(stun_time/5.0).timeout
 	visuals.modulate = Color(1,1,1, 0.0)
-	await get_tree().create_timer(0.2)
+	await get_tree().create_timer(stun_time/5.0).timeout
+	visuals.modulate = Color(1,1,1, 1.0)
+	await get_tree().create_timer(stun_time/5.0).timeout
+	visuals.modulate = Color(1,1,1, 0.0)
+	await get_tree().create_timer(stun_time/5.0).timeout
 	visuals.modulate = Color(1,1,1, 1.0)
 	is_stunned = false
 	

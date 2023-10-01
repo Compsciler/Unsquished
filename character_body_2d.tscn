@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dedbh8rwgxbi2"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_0mlqf"]
-[ext_resource type="SpriteFrames" path="res://Art/character_body_sprites.tres" id="2_4h3dc"]
+[ext_resource type="SpriteFrames" uid="uid://cxy66xv3deolf" path="res://Art/character_body_sprites.tres" id="2_4h3dc"]
 [ext_resource type="AudioStream" uid="uid://dn0xl0r4opcwn" path="res://Audio/wilhelm.mp3" id="3_gq2k7"]
-[ext_resource type="SpriteFrames" path="res://Art/character_fist_sprites.tres" id="3_ij4ay"]
+[ext_resource type="SpriteFrames" uid="uid://duyg6vk4g5nvb" path="res://Art/character_fist_sprites.tres" id="3_ij4ay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1rw1c"]
 size = Vector2(64, 64)

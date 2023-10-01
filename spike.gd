@@ -6,6 +6,8 @@ class_name Spike
 @export var damage_time = 1.0
 @onready var sprite = $Sprite2D
 
+var player = null
+
 var is_damaging = false
 
 # Called when the node enters the scene tree for the first time.
@@ -27,18 +29,21 @@ func _ready():
 	sprite.show()
 	
 	is_damaging = true
+	$Area2D.monitoring = true
 	sprite.modulate.a = 1.0
 	await get_tree().create_timer(damage_time).timeout
 	queue_free()
 
 
 func _on_area_2d_body_entered(body):
-	if body is Player and is_damaging:
+	if body is Player:
 		body.stun()
 
 
 func _on_area_2d_body_exited(body):
-	pass # Replace with function body.
+	pass
+		
+		
 
 func get_supered(player_pos):
 	await get_tree().create_timer(0.125).timeout
