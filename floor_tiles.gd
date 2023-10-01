@@ -12,6 +12,8 @@ var spawn_rate = spawn_rate_start
 
 @onready var timer = $Timer
 
+@onready var player = get_tree().get_nodes_in_group("player")[0]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = spawn_rate_start + spawn_offset_start
@@ -31,9 +33,15 @@ func spawn(row, col):
 	var spike_inst = spike.instantiate()
 	add_child(spike_inst)
 	spike_inst.position = pos
+	
+func spawn_on_player(offset_x = 0, offset_y = 0):
+	var pos = Vector2(player.position.x + offset_x, player.position.y + offset_y)
+	var spike_inst = spike.instantiate()
+	add_child(spike_inst)
+	spike_inst.position = pos
 
 func _on_timer_timeout():
-	spawn_random()
+	spawn_on_player()
 	spawn_rate += spawn_rate_increase
 	spawn_rate = max(spawn_rate, spawn_rate_min)
 	timer.wait_time = spawn_rate

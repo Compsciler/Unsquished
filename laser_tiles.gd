@@ -13,6 +13,8 @@ var spawn_rate = spawn_rate_start
 
 @onready var timer = $Timer
 
+@onready var player = get_tree().get_nodes_in_group("player")[0]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = spawn_rate_start + spawn_offset_start
@@ -41,8 +43,23 @@ func spawn(idx, is_row):
 	laser_inst.position = pos
 	laser_inst.rotation = rot
 
+func spawn_on_player(offset = 0):
+	var is_row = randi() % 2 == 0
+	var pos
+	var rot
+	if is_row:
+		pos = Vector2(center, player.position.y + offset)
+		rot = 0
+	else:
+		pos = Vector2(player.position.x + offset, center)
+		rot = PI / 2
+	var laser_inst = laser.instantiate()
+	add_child(laser_inst)
+	laser_inst.position = pos
+	laser_inst.rotation = rot
+
 func _on_timer_timeout():
-	spawn_random()
+	spawn_on_player()
 	spawn_rate += spawn_rate_increase
 	spawn_rate = max(spawn_rate, spawn_rate_min)
 	timer.wait_time = spawn_rate

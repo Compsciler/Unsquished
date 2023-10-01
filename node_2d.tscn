@@ -12,7 +12,7 @@
 
 [node name="LaserTiles" parent="." instance=ExtResource("3_t65hy")]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_1flav")]
+[node name="CharacterBody2D" parent="." groups=["player"] instance=ExtResource("1_1flav")]
 
 [node name="Walls" parent="." instance=ExtResource("2_4k04h")]
 position = Vector2(275, 274)
