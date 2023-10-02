@@ -12,6 +12,7 @@ var is_stunned:bool = false
 @onready var punch_audio_player = $PunchAudioStreamPlayer2D
 @onready var metal_audio_player = $MetalAudioStreamPlayer2D
 @onready var super_audio_player = $SuperAudioStreamPlayer2D
+@onready var stun_audio_player = $StunAudioStreamPlayer2D
 @onready var visuals = $Visuals
 @onready var body_sprite = $Visuals/BodySprite
 @onready var fist_sprite = $Visuals/FistSprite
@@ -121,6 +122,8 @@ func stun():
 	is_stunned = true
 	stun_sprite.show()
 	stun_sprite.play("default")
+	stun_audio_player.play()
+	
 	visuals.modulate = Color(1,1,1, 0.0)
 	await get_tree().create_timer(stun_time/5.0).timeout
 	visuals.modulate = Color(1,1,1, 1.0)
