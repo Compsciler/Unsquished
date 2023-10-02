@@ -23,6 +23,7 @@ func _on_timer_timeout():
 			# GameManager.score += GameManager.u
 			await get_tree().create_timer(0.5).timeout
 			get_tree().change_scene_to_file("res://end_scene.tscn")
+		$TextureRect/TextureRect2/TextureProgressBar.value += 1.391
 
 
 func _on_character_body_2d_charge_change(charge):
