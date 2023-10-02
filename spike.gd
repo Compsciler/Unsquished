@@ -1,7 +1,7 @@
 extends Node2D
 class_name Spike
 
-@export var warning_time = 2.0
+@export var warning_time = 1.0
 @export var damage_time = 1.0
 @onready var sprite = $PrepSprite1/PrepSprite2
 @onready var spike_sprite = $PrepSprite1/AnimatedSprite2D
@@ -19,6 +19,14 @@ func _ready():
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.6), 0.5)
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.2), 0.5)
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 1.0), 0.2)
+	await get_tree().create_timer(warning_time * 0.33).timeout
+	sprite.hide()
+	await get_tree().create_timer(warning_time * 0.17).timeout
+	sprite.show()
+	await get_tree().create_timer(warning_time * 0.33).timeout
+	sprite.hide()
+	await get_tree().create_timer(warning_time * 0.17).timeout
+	sprite.show()
 	await get_tree().create_timer(warning_time * 0.33).timeout
 	sprite.hide()
 	await get_tree().create_timer(warning_time * 0.17).timeout

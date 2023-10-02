@@ -46,16 +46,13 @@ script = ExtResource("1_0mlqf")
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_4h3dc")
-animation = &"right_run"
-frame_progress = 0.329742
+animation = &"front_idle"
 
 [node name="FistSprite" type="AnimatedSprite2D" parent="Visuals"]
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("3_ij4ay")
-animation = &"right_idle_attack"
-frame = 3
-frame_progress = 1.0
+animation = &"back_idle_attack"
 
 [node name="StunSprite" type="AnimatedSprite2D" parent="."]
 visible = false
