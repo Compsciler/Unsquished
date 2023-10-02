@@ -4,7 +4,7 @@ extends Node
 # "987dbd0b9e5eb3749072acc47a210996eea9feb0"
 var game_API_key = "dev_44530aaddb0b4294bc56bfe3f7c515c8"  # "dev_44530aaddb0b4294bc56bfe3f7c515c8"
 var development_mode = true
-var leaderboard_key = "leaderboardKey"
+var leaderboard_key = "SECRET"
 var session_token = ""
 var score = 0
 

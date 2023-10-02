@@ -42,13 +42,19 @@ func spawn_on_player(offset_x = 0, offset_y = 0):
 	spike_inst.position = pos
 
 func _on_timer_timeout():
-	var offset = 0
-	offset += randi() % 40 - 20
-	offset += randi() % 40 - 20
-	offset += randi() % 40 - 20
-	offset += randi() % 40 - 20
-	offset += randi() % 40 - 20
-	spawn_on_player(offset)
+	var offset_x = 0
+	offset_x += randi() % 40 - 20
+	offset_x += randi() % 40 - 20
+	offset_x += randi() % 40 - 20
+	offset_x += randi() % 40 - 20
+	offset_x += randi() % 40 - 20
+	var offset_y = 0
+	offset_y += randi() % 40 - 20
+	offset_y += randi() % 40 - 20
+	offset_y += randi() % 40 - 20
+	offset_y += randi() % 40 - 20
+	offset_y += randi() % 40 - 20
+	spawn_on_player(offset_x, offset_y)
 	spawn_rate += spawn_rate_increase
 	spawn_rate = max(spawn_rate, spawn_rate_min)
 	timer.wait_time = spawn_rate

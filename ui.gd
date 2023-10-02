@@ -16,6 +16,8 @@ extends CanvasLayer
 var filled_texture = preload("res://Art/charge.png")
 var depleted_texture = preload("res://Art/charge_depleted.png")
 
+var val = 0.0
+
 var abberation_strength: float = 1.0: 
 	set(value):
 		$ColorRect.get_material().set_shader_parameter("r_displacement", Vector2(value, 0.0))
@@ -24,12 +26,14 @@ var abberation_strength: float = 1.0:
 func _on_timer_timeout():
 	if (increment_score):
 		GameManager.score += 1
+		GameManager.raw_score += 1
 		$TextureRect/Score.text = str(GameManager.score)
-		if GameManager.score >= 100:
+		if GameManager.raw_score >= 100:
 			GameManager.won = true
 			await get_tree().create_timer(0.05).timeout
 			get_tree().change_scene_to_file("res://end_scene.tscn")
-		$TextureRect/TextureRect2/TextureProgressBar.value += 1.391
+		val += 1.39130434783
+		$TextureRect/TextureRect2/TextureProgressBar.value = val
 
 
 func _on_character_body_2d_charge_change(charge):

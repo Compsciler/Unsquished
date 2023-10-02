@@ -34,7 +34,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	# return
+#	return
 	if not beat_step:
 		target_position += normal * speed * delta
 		position = position.lerp(target_position, 0.8)
@@ -44,8 +44,8 @@ func _physics_process(delta):
 	time += delta
 
 func _on_timer_timeout():
-	# Engine.time_scale = 10
-	# return
+#	Engine.time_scale = 10
+#	return
 	if beat_step:
 		position += normal * speed * timer.wait_time
 
