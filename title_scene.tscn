@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://y1gwgcia66i5"]
+[gd_scene load_steps=6 format=3 uid="uid://y1gwgcia66i5"]
 
 [ext_resource type="FontFile" uid="uid://dc0l4u2m5v43n" path="res://joystix monospace.otf" id="1_8i2ws"]
 [ext_resource type="Script" path="res://title_scene.gd" id="1_u0ha5"]
+[ext_resource type="PackedScene" uid="uid://cydbij7ixi433" path="res://ui.tscn" id="3_6ijyv"]
+[ext_resource type="Texture2D" uid="uid://cnujva54424vu" path="res://Art/Title2HighRes.png" id="4_otwou"]
+[ext_resource type="Texture2D" uid="uid://bac42j87n6p47" path="res://Art/title.png" id="5_fp7kv"]
 
 [node name="TitleScene" type="Control"]
 layout_mode = 3
@@ -48,3 +51,37 @@ theme_override_fonts/font = ExtResource("1_8i2ws")
 theme_override_font_sizes/font_size = 13
 text = "Press ANY KEY TO START"
 horizontal_alignment = 1
+
+[node name="ui" parent="." instance=ExtResource("3_6ijyv")]
+
+[node name="TextureRect2" type="TextureRect" parent="ui"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -208.0
+offset_right = 258.0
+offset_bottom = 307.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_otwou")
+
+[node name="ColorRect" parent="ui" index="4"]
+visible = false
+
+[node name="TextureRect3" type="TextureRect" parent="ui"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_top = 134.0
+offset_right = 229.0
+offset_bottom = 256.0
+grow_horizontal = 2
+texture = ExtResource("5_fp7kv")
+
+[editable path="ui"]
