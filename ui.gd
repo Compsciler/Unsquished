@@ -18,6 +18,8 @@ func _on_timer_timeout():
 	if (increment_score):
 		GameManager.score += 1
 		$TextureRect/Score.text = str(GameManager.score)
+		if GameManager.score >= 100:
+			GameManager.won = true
 
 
 func _on_character_body_2d_charge_change(charge):

@@ -104,6 +104,7 @@ texture = ExtResource("3_h6qhw")
 expand_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.391
 autostart = true
 
 [node name="Label" type="Label" parent="."]
