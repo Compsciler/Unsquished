@@ -27,7 +27,7 @@ var is_invincible = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.timeout.connect(_on_timer_timeout)
-	timer.wait_time = 0.869565 / 2
+	timer.wait_time = 0.4347826
 	timer.start()
 	pass # Replace with function body.
 

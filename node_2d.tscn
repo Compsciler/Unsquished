@@ -1,22 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3yyhj2vejcjk"]
+[gd_scene load_steps=13 format=3 uid="uid://b3yyhj2vejcjk"]
 
 [ext_resource type="PackedScene" uid="uid://dedbh8rwgxbi2" path="res://character_body_2d.tscn" id="1_1flav"]
+[ext_resource type="Script" path="res://ground.gd" id="1_ist7r"]
 [ext_resource type="Texture2D" uid="uid://dhggn6w5v84vj" path="res://Art/3rdParty/grasstilefield.jpg" id="1_w5w76"]
 [ext_resource type="PackedScene" uid="uid://7adadpm72w4m" path="res://walls.tscn" id="2_4k04h"]
+[ext_resource type="AudioStream" uid="uid://byvfelp2uootb" path="res://Audio/Time Signposts/limited_space_ground.mp3" id="2_mvicl"]
+[ext_resource type="AudioStream" uid="uid://colqlee4im413" path="res://Audio/Time Signposts/limited_space_stratosphere.mp3" id="3_plxuw"]
 [ext_resource type="PackedScene" uid="uid://b457k2tuuax1e" path="res://laser_tiles.tscn" id="3_t65hy"]
 [ext_resource type="PackedScene" uid="uid://dtni714s3ot4v" path="res://floor_tiles.tscn" id="3_wlm5c"]
 [ext_resource type="PackedScene" uid="uid://cydbij7ixi433" path="res://ui.tscn" id="4_o1f02"]
+[ext_resource type="AudioStream" uid="uid://dgeth7yr22rc2" path="res://Audio/Time Signposts/limited_space_exosphere.mp3" id="4_w31xf"]
+[ext_resource type="AudioStream" uid="uid://55sfwqkhofy5" path="res://Audio/Time Signposts/limited_space_outer_space.mp3" id="5_325w7"]
 [ext_resource type="AudioStream" uid="uid://bv1o2v5rfq5vn" path="res://Audio/limited_space_v1.mp3" id="6_h4jkm"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(5, 110)
 
-[node name="GrassField" type="Node2D" parent="."]
+[node name="Ground" type="Node2D" parent="."]
+script = ExtResource("1_ist7r")
 
-[node name="Sprite2D" type="Sprite2D" parent="GrassField"]
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
 position = Vector2(264, 261)
 scale = Vector2(0.596644, 0.596644)
 texture = ExtResource("1_w5w76")
+
+[node name="Signpost0AudioStreamPlayer" type="AudioStreamPlayer" parent="Ground"]
+stream = ExtResource("2_mvicl")
+volume_db = 8.0
+
+[node name="Signpost1AudioStreamPlayer" type="AudioStreamPlayer" parent="Ground"]
+stream = ExtResource("3_plxuw")
+volume_db = 8.0
+
+[node name="Signpost2AudioStreamPlayer" type="AudioStreamPlayer" parent="Ground"]
+stream = ExtResource("4_w31xf")
+volume_db = 8.0
+
+[node name="Signpost3AudioStreamPlayer" type="AudioStreamPlayer" parent="Ground"]
+stream = ExtResource("5_325w7")
+volume_db = 8.0
 
 [node name="FloorTiles" parent="." instance=ExtResource("3_wlm5c")]
 
