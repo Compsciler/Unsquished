@@ -15,6 +15,8 @@ var is_stunned:bool = false
 @onready var visuals = $Visuals
 @onready var body_sprite = $Visuals/BodySprite
 @onready var fist_sprite = $Visuals/FistSprite
+@onready var stun_sprite = $StunSprite
+
 
 @onready var stun_time = 1.0
 
@@ -117,6 +119,8 @@ func _physics_process(delta):
 func stun():
 	is_attacking = false
 	is_stunned = true
+	stun_sprite.show()
+	stun_sprite.play("default")
 	visuals.modulate = Color(1,1,1, 0.0)
 	await get_tree().create_timer(stun_time/5.0).timeout
 	visuals.modulate = Color(1,1,1, 1.0)
@@ -129,6 +133,7 @@ func stun():
 	await get_tree().create_timer(stun_time/5.0).timeout
 	visuals.modulate = Color(1,1,1, 1.0)
 	is_stunned = false
+	stun_sprite.hide()
 	
 
 
