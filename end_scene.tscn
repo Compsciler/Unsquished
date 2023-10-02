@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://LootLockerGodot.gd" id="3_voi56"]
 
 [node name="EndScene" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,80 +81,38 @@ anchor_bottom = 0.5
 offset_left = -192.0
 offset_top = -160.0
 offset_right = 318.0
-offset_bottom = 254.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_77msd")
 theme_override_font_sizes/font_size = 16
-text = "RANK         NAME  SCORE
-   1  ABCDEFGHIJK    100
-   2  ABCDEFGHIJK    100
-   3  ABCDEFGHIJK    100
-   4  ABCDEFGHIJK    100
-   5  ABCDEFGHIJK    100
-   6  ABCDEFGHIJK    100
-   7  ABCDEFGHIJK    100
-   8  ABCDEFGHIJK    100
-   9  ABCDEFGHIJK    100
-  10  ABCDEFGHIJK    100
-  11  ABCDEFGHIJK    100
-  12  ABCDEFGHIJK    100
-  13  ABCDEFGHIJK    100
-  14  ABCDEFGHIJK    100
-  15  ABCDEFGHIJK    100
-
-  99     [PLAYER]     50"
+text = "LOADING LEADERBOARD..."
 
 [node name="LootLocker" type="Node2D" parent="."]
 script = ExtResource("3_voi56")
 
-[node name="HBoxContainer" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = -99.0
-offset_top = 244.0
-offset_right = 626.0
-offset_bottom = 284.0
-
-[node name="Rank" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-offset_left = 133.0
-offset_top = -21.0
-offset_right = 186.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 433.0
+offset_right = 260.0
+offset_bottom = 466.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_77msd")
-theme_override_font_sizes/font_size = 16
-text = "RANK
-   1
-   2
-   3
-   4"
+placeholder_text = "Your Name"
+max_length = 12
 
-[node name="Name" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-offset_left = 381.0
-offset_top = 62.0
-offset_right = 434.0
-offset_bottom = 85.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+[node name="Submit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 434.0
+offset_right = 461.0
+offset_bottom = 466.0
 theme_override_fonts/font = ExtResource("1_77msd")
-theme_override_font_sizes/font_size = 16
-text = "NAME"
-
-[node name="Score" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-offset_left = 114.0
-offset_top = 8.0
-offset_right = 353.0
-offset_bottom = 31.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_77msd")
-theme_override_font_sizes/font_size = 16
-text = "       HIGH SCORES"
+text = "Submit"
 
 [connection signal="leaderboard_collected" from="LootLocker" to="." method="_on_loot_locker_leaderboard_collected"]
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="Submit" to="." method="_on_button_pressed"]

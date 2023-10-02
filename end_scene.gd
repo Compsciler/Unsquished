@@ -5,6 +5,11 @@ extends Control
 @onready var score_text = $Scores
 @onready var loot_locker = $LootLocker
 
+@onready var submit_button = $Submit
+@onready var name_input = $TextEdit
+
+
+
 func _ready():
 	label.text = "Your final score is " + str(GameManager.score)
 	
@@ -18,7 +23,15 @@ func _ready():
 
 
 func _on_button_pressed():
-	pass # Replace with function body.
+	submit_button.disabled = true
+	if name_input.text == "":
+		name_input.text = "[NAMELESS]"
+	loot_locker._change_player_name(name_input.text)
+	await loot_locker.player_name_changed
+	loot_locker._upload_score(GameManager.score)
+	await loot_locker.player_score_uploaded
+	loot_locker._get_leaderboards()
+
 
 func pad_left(input: String, length: int, char: String = " ") -> String:
 	var result = input
@@ -38,14 +51,12 @@ func get_top_n_scores(data: Array, n: int) -> String:
 	for i in range(min(n, data.size())):
 		var entry = data[i]
 		var rank = pad_left(str(entry["rank"]), 4)
-		var name = pad_left(entry["player"]["public_uid"].substr(0, 12), 12)
+		var name = pad_left(entry["player"]["name"].substr(0, 12), 12)
 		var score = pad_left(str(entry["score"]), 5)
 		result += "%s  %s  %s\n" % [rank, name, score]
 	
 	return result
 
-
-
-
 func _on_loot_locker_leaderboard_collected():
 	score_text.text = get_top_n_scores(loot_locker.items, 15)
+
