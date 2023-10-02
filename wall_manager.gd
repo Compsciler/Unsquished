@@ -33,4 +33,4 @@ func _on_timer_timeout():
 	rate = max(rate, rate_min)
 	timer.wait_time = rate
 	timer.start()
-	print(timer.wait_time, " ", rate)
+	# print(timer.wait_time, " ", rate)

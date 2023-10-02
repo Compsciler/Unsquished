@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://55sfwqkhofy5"
+path="res://.godot/imported/limited_space_outer_space.mp3-e7fe1ef73908e5e4170d4fea5094bf8a.mp3str"
+
+[deps]
+
+source_file="res://Audio/Time Signposts/limited_space_outer_space.mp3"
+dest_files=["res://.godot/imported/limited_space_outer_space.mp3-e7fe1ef73908e5e4170d4fea5094bf8a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

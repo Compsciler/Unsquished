@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dgeth7yr22rc2"
+path="res://.godot/imported/limited_space_exosphere.mp3-8abb647c52a5d2ae92ba0fb73e6dd8a8.mp3str"
+
+[deps]
+
+source_file="res://Audio/Time Signposts/limited_space_exosphere.mp3"
+dest_files=["res://.godot/imported/limited_space_exosphere.mp3-8abb647c52a5d2ae92ba0fb73e6dd8a8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

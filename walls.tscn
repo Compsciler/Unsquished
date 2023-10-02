@@ -47,6 +47,9 @@ texture = ExtResource("3_tgiqb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpWall"]
 shape = SubResource("WorldBoundaryShape2D_bjkvj")
 
+[node name="Timer" type="Timer" parent="UpWall"]
+wait_time = 0.87
+
 [node name="DownWall" type="AnimatableBody2D" parent="." groups=["wall"]]
 modulate = Color(0, 0, 0, 1)
 z_index = 1
@@ -115,4 +118,5 @@ shape = SubResource("RectangleShape2D_wk2uk")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[connection signal="timeout" from="UpWall/Timer" to="UpWall" method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

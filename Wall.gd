@@ -20,23 +20,38 @@ var is_invincible = false
 @onready var base_color = modulate
 @export var invincible_color = Color(1, 1, 0)
 
+@onready var timer = get_node("../UpWall/Timer")
+
+@export var beat_step = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	timer.timeout.connect(_on_timer_timeout)
+	timer.wait_time = 0.869565 / 2
+	timer.start()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	target_position += normal * speed * delta
-	position = position.lerp(target_position, 0.8)
+	if not beat_step:
+		target_position += normal * speed * delta
+		position = position.lerp(target_position, 0.8)
 	if time >= speed_increase_start_offset:
 		speed += speed_increase_rate * delta
 		speed = min(speed, speed_max)
 	time += delta
 
+func _on_timer_timeout():
+	if beat_step:
+		position += normal * speed * timer.wait_time
+
 
 func retract(amount: float):
-	target_position -= normal * retract_strength * amount
+	if beat_step:
+		position -= normal * retract_strength * amount
+	else:
+		target_position -= normal * retract_strength * amount
 
 
 func make_invincible(duration):
