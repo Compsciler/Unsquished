@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://dedbh8rwgxbi2"]
 
 [ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_0mlqf"]
-[ext_resource type="SpriteFrames" uid="uid://cxy66xv3deolf" path="res://Art/character_body_sprites.tres" id="2_4h3dc"]
+[ext_resource type="SpriteFrames" path="res://Art/character_body_sprites.tres" id="2_4h3dc"]
 [ext_resource type="AudioStream" uid="uid://dn0xl0r4opcwn" path="res://Audio/wilhelm.mp3" id="3_gq2k7"]
-[ext_resource type="SpriteFrames" uid="uid://duyg6vk4g5nvb" path="res://Art/character_fist_sprites.tres" id="3_ij4ay"]
+[ext_resource type="SpriteFrames" path="res://Art/character_fist_sprites.tres" id="3_ij4ay"]
 [ext_resource type="Texture2D" uid="uid://x2hbir20t0ga" path="res://Art/Stun/stun_1.png" id="4_m55s4"]
 [ext_resource type="AudioStream" uid="uid://be3qj4fur84m5" path="res://Audio/limited_space_punch_sound.mp3" id="5_2f480"]
 [ext_resource type="Texture2D" uid="uid://c1gef4hgc071g" path="res://Art/Stun/stun_2.png" id="5_pjbc3"]
