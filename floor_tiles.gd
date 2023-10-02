@@ -42,8 +42,16 @@ func spawn_on_player(offset_x = 0, offset_y = 0):
 	spike_inst.position = pos
 
 func _on_timer_timeout():
-	spawn_on_player()
+	var offset = 0
+	offset += randi() % 80 - 40
+	offset += randi() % 80 - 40
+	offset += randi() % 80 - 40
+	offset += randi() % 80 - 40
+	offset += randi() % 80 - 40
+	offset += randi() % 80 - 40
+	spawn_on_player(offset)
 	spawn_rate += spawn_rate_increase
 	spawn_rate = max(spawn_rate, spawn_rate_min)
 	timer.wait_time = spawn_rate
+	print("FLOOR:", spawn_rate)
 	timer.start()

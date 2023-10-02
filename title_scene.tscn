@@ -85,7 +85,4 @@ offset_bottom = 256.0
 grow_horizontal = 2
 texture = ExtResource("5_fp7kv")
 
-[node name="ColorRect" parent="ui" index="5"]
-visible = false
-
 [editable path="ui"]

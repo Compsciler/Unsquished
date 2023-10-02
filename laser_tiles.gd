@@ -15,6 +15,11 @@ var spawn_rate = spawn_rate_start
 
 @onready var player = get_tree().get_nodes_in_group("player")[0]
 
+var time = 0.0
+var signpost_idx = 0
+var beat = 0.4347826
+var times = [beat * (80 - 1) - 2, beat * (144 - 1) - 2, beat * (256 - 1) - 2, beat * (320 - 3) - 2]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time = spawn_offset_start
@@ -22,7 +27,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if signpost_idx < len(times) and time >= times[signpost_idx]:
+		spawn_on_player2(false)
+		spawn_on_player2(true)
+		signpost_idx += 1
+	time += delta
 
 func spawn_random():
 	# TODO: choose row and col in bounds
@@ -58,10 +67,32 @@ func spawn_on_player(offset = 0):
 	add_child(laser_inst)
 	laser_inst.position = pos
 	laser_inst.rotation = rot
+	
+func spawn_on_player2(is_row, offset = 0):
+	var pos
+	var rot
+	if is_row:
+		pos = Vector2(center, player.position.y + offset)
+		rot = 0
+	else:
+		pos = Vector2(player.position.x + offset, center)
+		rot = PI / 2
+	var laser_inst = laser.instantiate()
+	add_child(laser_inst)
+	laser_inst.position = pos
+	laser_inst.rotation = rot
 
 func _on_timer_timeout():
-	spawn_on_player()
+	var offset = 0
+	offset += randi() % 20 - 10
+	offset += randi() % 20 - 10
+	offset += randi() % 20 - 10
+	offset += randi() % 20 - 10
+	offset += randi() % 20 - 10
+	offset += randi() % 20 - 10
+	spawn_on_player(offset)
 	spawn_rate += spawn_rate_increase
 	spawn_rate = max(spawn_rate, spawn_rate_min)
+	print("LASER:", spawn_rate)
 	timer.wait_time = spawn_rate
 	timer.start()

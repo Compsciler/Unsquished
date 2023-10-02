@@ -6,7 +6,7 @@
 script = ExtResource("1_52y3x")
 spawn_offset_start = 5.0
 spawn_rate_min = 1.5
-spawn_rate_increase = -0.25
+spawn_rate_increase = -0.125
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
