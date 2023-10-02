@@ -157,6 +157,78 @@ theme_override_fonts/font = ExtResource("2_sqlv1")
 theme_override_font_sizes/font_size = 50
 text = "SPACE"
 
+[node name="GROUND" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 167.5
+offset_top = 352.5
+offset_right = 372.5
+offset_bottom = 415.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.165, 1.165)
+pivot_offset = Vector2(102.785, 31.37)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_sqlv1")
+theme_override_font_sizes/font_size = 50
+text = "GROUND"
+
+[node name="STRATOSPHERE" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 167.5
+offset_top = 352.5
+offset_right = 372.5
+offset_bottom = 415.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.165, 1.165)
+pivot_offset = Vector2(102.785, 31.37)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_sqlv1")
+theme_override_font_sizes/font_size = 50
+text = "STRATOSPHERE"
+
+[node name="EXOSPHERE" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 167.5
+offset_top = 352.5
+offset_right = 372.5
+offset_bottom = 415.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.165, 1.165)
+pivot_offset = Vector2(102.785, 31.37)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_sqlv1")
+theme_override_font_sizes/font_size = 50
+text = "EXOSPHERE"
+
+[node name="OUTER_SPACE" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = 167.5
+offset_top = 352.5
+offset_right = 372.5
+offset_bottom = 415.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.165, 1.165)
+pivot_offset = Vector2(102.785, 31.37)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_sqlv1")
+theme_override_font_sizes/font_size = 50
+text = "OUTER SPACE"
+
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_oi13u")
 offset_left = 15.0

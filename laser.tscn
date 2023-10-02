@@ -59,11 +59,11 @@ frame_progress = 0.327212
 
 [node name="LaserWarning" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_cnkgg")
-volume_db = -8.0
+volume_db = -12.0
 
 [node name="LaserAppear" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_5edoy")
-volume_db = -8.0
+volume_db = -12.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
