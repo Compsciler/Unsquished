@@ -53,7 +53,7 @@ visible = false
 rotation = 1.5708
 scale = Vector2(3, 4.8)
 sprite_frames = SubResource("SpriteFrames_jfx0y")
-frame_progress = 0.0268542
+frame_progress = 0.327212
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
