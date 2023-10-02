@@ -20,10 +20,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -161.5
+offset_top = -303.0
+offset_right = 161.5
+offset_bottom = -274.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -33,6 +33,7 @@ text = "Your final score is"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -51,5 +52,108 @@ theme_override_font_sizes/font_size = 16
 text = "Press any button to play again"
 horizontal_alignment = 1
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="HighScoreText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -200.0
+offset_right = 322.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_77msd")
+theme_override_font_sizes/font_size = 16
+text = "       HIGH SCORES"
+
+[node name="Scores" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -160.0
+offset_right = 318.0
+offset_bottom = 254.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_77msd")
+theme_override_font_sizes/font_size = 16
+text = "RANK         NAME  SCORE
+   1  ABCDEFGHIJK    100
+   2  ABCDEFGHIJK    100
+   3  ABCDEFGHIJK    100
+   4  ABCDEFGHIJK    100
+   5  ABCDEFGHIJK    100
+   6  ABCDEFGHIJK    100
+   7  ABCDEFGHIJK    100
+   8  ABCDEFGHIJK    100
+   9  ABCDEFGHIJK    100
+  10  ABCDEFGHIJK    100
+  11  ABCDEFGHIJK    100
+  12  ABCDEFGHIJK    100
+  13  ABCDEFGHIJK    100
+  14  ABCDEFGHIJK    100
+  15  ABCDEFGHIJK    100
+
+  99     [PLAYER]     50"
+
+[node name="LootLocker" type="Node2D" parent="."]
 script = ExtResource("3_voi56")
+
+[node name="HBoxContainer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -99.0
+offset_top = 244.0
+offset_right = 626.0
+offset_bottom = 284.0
+
+[node name="Rank" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+offset_left = 133.0
+offset_top = -21.0
+offset_right = 186.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_77msd")
+theme_override_font_sizes/font_size = 16
+text = "RANK
+   1
+   2
+   3
+   4"
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+offset_left = 381.0
+offset_top = 62.0
+offset_right = 434.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_77msd")
+theme_override_font_sizes/font_size = 16
+text = "NAME"
+
+[node name="Score" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+offset_left = 114.0
+offset_top = 8.0
+offset_right = 353.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_77msd")
+theme_override_font_sizes/font_size = 16
+text = "       HIGH SCORES"
+
+[connection signal="leaderboard_collected" from="LootLocker" to="." method="_on_loot_locker_leaderboard_collected"]

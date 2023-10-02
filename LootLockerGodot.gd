@@ -15,6 +15,10 @@ var submit_score_http = HTTPRequest.new()
 var set_name_http = HTTPRequest.new()
 var get_name_http = HTTPRequest.new()
 
+var items
+
+signal leaderboard_collected
+
 func _ready():
     _authentication_request()
 
@@ -117,6 +121,8 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
     
     # Clear node
     leaderboard_http.queue_free()
+    items = json.data["items"]
+    emit_signal("leaderboard_collected")
 
 
 func _upload_score(score):
