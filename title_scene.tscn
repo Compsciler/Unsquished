@@ -64,13 +64,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -257.0
-offset_top = -208.0
-offset_right = 258.0
-offset_bottom = 307.0
+offset_left = -328.0
+offset_top = -205.0
+offset_right = 323.0
+offset_bottom = 308.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_otwou")
+stretch_mode = 4
 
 [node name="TextureRect3" type="TextureRect" parent="ui"]
 texture_filter = 1
@@ -83,5 +84,8 @@ offset_right = 229.0
 offset_bottom = 256.0
 grow_horizontal = 2
 texture = ExtResource("5_fp7kv")
+
+[node name="ColorRect" parent="ui" index="5"]
+visible = false
 
 [editable path="ui"]
