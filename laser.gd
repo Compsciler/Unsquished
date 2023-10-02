@@ -1,10 +1,9 @@
 extends Node2D
-class_name Spike
+class_name Laser
 
 @export var warning_time = 2.0
 @export var damage_time = 1.0
-@onready var sprite = $PrepSprite1/PrepSprite2
-@onready var spike_sprite = $PrepSprite1/AnimatedSprite2D
+@onready var sprite = $Sprite2D
 
 var player = null
 
@@ -12,7 +11,7 @@ var is_damaging = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.show()
+	sprite.modulate.a = 0.2
 #	var tween = create_tween()
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.6), 0.5)
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.2), 0.5)
@@ -31,8 +30,6 @@ func _ready():
 	is_damaging = true
 	$Area2D.monitoring = true
 	sprite.modulate.a = 1.0
-	spike_sprite.show()
-	spike_sprite.play("default")
 	await get_tree().create_timer(damage_time).timeout
 	queue_free()
 
