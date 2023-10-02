@@ -21,6 +21,7 @@ position = Vector2(5, 110)
 
 [node name="Walls" parent="." instance=ExtResource("2_4k04h")]
 position = Vector2(275, 274)
+offset_start = 34.7826
 
 [node name="UpWall" parent="Walls" index="0"]
 position = Vector2(210, -258)
