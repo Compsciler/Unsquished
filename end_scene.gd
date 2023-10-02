@@ -64,7 +64,7 @@ func get_top_n_scores(data: Array, n: int) -> String:
 	return result
 
 func _on_loot_locker_leaderboard_collected():
-	score_text.text = get_top_n_scores(loot_locker.items, 15)
+	score_text.text = get_top_n_scores(loot_locker.items, 16)
 
 
 

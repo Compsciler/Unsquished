@@ -95,7 +95,7 @@ func _on_authentication_request_completed(result, response_code, headers, body):
 
 func _get_leaderboards():
 	print("Getting leaderboards")
-	var url = "https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/list?count=15"
+	var url = "https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/list?count=16"
 	var headers = ["Content-Type: application/json", "x-session-token:"+session_token]
 	
 	# Create a request node for getting the highscore
