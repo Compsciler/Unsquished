@@ -40,7 +40,8 @@ func _on_character_body_2d_charge_change(charge):
 	tween.set_parallel(false)
 	tween.tween_callback(func(): space_label.hide())
 	
-
+func _process(delta):
+	$TextureRect/Score.text = str(GameManager.score)
 
 func _on_character_body_2d_hit_wall():
 	var tween = get_tree().create_tween()

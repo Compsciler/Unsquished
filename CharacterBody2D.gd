@@ -111,6 +111,7 @@ func _physics_process(delta):
 		
 		super_audio_player.play()
 		super_count -= 1
+		GameManager.supers_unused = super_count
 		emit_signal("charge_change", super_count)
 		
 	velocity.x = direction.x * SPEED
@@ -123,6 +124,8 @@ func stun():
 	stun_sprite.show()
 	stun_sprite.play("default")
 	stun_audio_player.play()
+	GameManager.stun_count += 1
+	GameManager.score -= 1
 	
 	visuals.modulate = Color(1,1,1, 0.0)
 	await get_tree().create_timer(stun_time/5.0).timeout

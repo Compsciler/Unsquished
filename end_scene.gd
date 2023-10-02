@@ -11,7 +11,13 @@ extends Control
 
 
 func _ready():
-	label.text = "Your final score is " + str(GameManager.score)
+	if not GameManager.won:
+		label.text = "Score: " + str(GameManager.score)
+	else:
+		var base = GameManager.score
+		var bonus = GameManager.supers_unused * 10
+		GameManager.score = base + bonus
+		label.text = "Score: " + str(base) + " + \n 10 x " + str(GameManager.supers_unused) + " (LEFTOVER SPACE) = " + str(GameManager.score)
 	
 #
 #func _unhandled_key_input(event):
