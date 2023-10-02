@@ -89,7 +89,7 @@ func _on_authentication_request_completed(result, response_code, headers, body):
     # Clear node
     auth_http.queue_free()
     # Get leaderboards
-    #_get_leaderboards()
+    _get_leaderboards()
     pass
 
 

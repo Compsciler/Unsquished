@@ -94,10 +94,10 @@ script = ExtResource("3_voi56")
 
 [node name="TextEdit" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 85.0
-offset_top = 433.0
-offset_right = 260.0
-offset_bottom = 466.0
+offset_left = 79.0
+offset_top = 515.0
+offset_right = 254.0
+offset_bottom = 548.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_77msd")
@@ -106,13 +106,23 @@ max_length = 12
 
 [node name="Submit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 286.0
-offset_top = 434.0
-offset_right = 461.0
-offset_bottom = 466.0
+offset_left = 280.0
+offset_top = 516.0
+offset_right = 455.0
+offset_bottom = 548.0
 theme_override_fonts/font = ExtResource("1_77msd")
 text = "Submit"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 565.0
+offset_right = 360.0
+offset_bottom = 597.0
+theme_override_fonts/font = ExtResource("1_77msd")
+text = "Back"
 
 [connection signal="leaderboard_collected" from="LootLocker" to="." method="_on_loot_locker_leaderboard_collected"]
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="Submit" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

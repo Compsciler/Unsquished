@@ -44,6 +44,7 @@ position = Vector2(543, 270)
 position = Vector2(272, 543)
 
 [node name="ui" parent="." instance=ExtResource("4_o1f02")]
+increment_score = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_h4jkm")

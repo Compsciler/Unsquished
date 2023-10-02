@@ -60,3 +60,8 @@ func get_top_n_scores(data: Array, n: int) -> String:
 func _on_loot_locker_leaderboard_collected():
 	score_text.text = get_top_n_scores(loot_locker.items, 15)
 
+
+
+func _on_back_pressed():
+	GameManager.score = 0
+	get_tree().change_scene_to_file("res://title_scene.tscn")

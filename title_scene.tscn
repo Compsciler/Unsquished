@@ -54,6 +54,9 @@ horizontal_alignment = 1
 
 [node name="ui" parent="." instance=ExtResource("3_6ijyv")]
 
+[node name="ColorRect" parent="ui" index="3"]
+visible = false
+
 [node name="TextureRect2" type="TextureRect" parent="ui"]
 texture_filter = 1
 anchors_preset = 8
@@ -68,9 +71,6 @@ offset_bottom = 307.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_otwou")
-
-[node name="ColorRect" parent="ui" index="4"]
-visible = false
 
 [node name="TextureRect3" type="TextureRect" parent="ui"]
 texture_filter = 1

@@ -4,6 +4,8 @@ extends CanvasLayer
 
 @onready var space_label = $Label
 
+@export var increment_score = false
+
 var filled_texture = preload("res://Art/charge.png")
 var depleted_texture = preload("res://Art/charge_depleted.png")
 
@@ -13,8 +15,9 @@ var abberation_strength: float = 1.0:
 		$ColorRect.get_material().set_shader_parameter("b_displacement", Vector2(-value, 0.0))
 
 func _on_timer_timeout():
-	GameManager.score += 1
-	$TextureRect/Score.text = str(GameManager.score)
+	if (increment_score):
+		GameManager.score += 1
+		$TextureRect/Score.text = str(GameManager.score)
 
 
 func _on_character_body_2d_charge_change(charge):
