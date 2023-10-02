@@ -19,9 +19,7 @@ var times = [beat * 0, beat * 80, beat * 144, beat * 256]
 	$Space2
 ]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+signal stage_change
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,4 +32,5 @@ func _process(delta):
 			else:
 				signpost_bgs[i].hide()
 		signpost_idx += 1
+		emit_signal("stage_change", signpost_idx-1)
 	time += delta

@@ -6,6 +6,13 @@ extends CanvasLayer
 
 @export var increment_score = false
 
+@onready var stage_labels = [
+	$GROUND,
+	$STRATOSPHERE,
+	$EXOSPHERE,
+	$OUTER_SPACE
+]
+
 var filled_texture = preload("res://Art/charge.png")
 var depleted_texture = preload("res://Art/charge_depleted.png")
 
@@ -47,3 +54,17 @@ func _on_character_body_2d_hit_wall():
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "abberation_strength", 6.0, 0.5)
 	tween.tween_property(self, "abberation_strength", 1.0, 0.5)
+
+
+func tween_label(label):
+	label.show()
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(label, "scale", Vector2(2.3, 2.3), 1)
+	tween.tween_property(label, "modulate", Color(1.0, 1.0, 1.0, 0.2), 1)
+	tween.set_parallel(false)
+	tween.tween_callback(func(): label.hide())
+	
+
+func _on_ground_stage_change(stageidx):
+	tween_label(stage_labels[stageidx])

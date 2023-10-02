@@ -55,7 +55,7 @@ horizontal_alignment = 1
 
 [node name="ui" parent="." instance=ExtResource("3_6ijyv")]
 
-[node name="ColorRect" parent="ui" index="3"]
+[node name="ColorRect" parent="ui" index="7"]
 visible = false
 
 [node name="TextureRect2" type="TextureRect" parent="ui"]
