@@ -20,8 +20,7 @@ func _on_timer_timeout():
 		$TextureRect/Score.text = str(GameManager.score)
 		if GameManager.score >= 100:
 			GameManager.won = true
-			# GameManager.score += GameManager.u
-			await get_tree().create_timer(0.5).timeout
+			await get_tree().create_timer(0.125).timeout
 			get_tree().change_scene_to_file("res://end_scene.tscn")
 
 
