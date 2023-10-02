@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnv4n1vecun31"]
+
+[ext_resource type="Script" path="res://HighscoreScreen.gd" id="1_sm1l2"]
+[ext_resource type="PackedScene" uid="uid://qtd4jtukqvh3" path="res://addons/easyleaderboard/leaderboard/Leaderboard.tscn" id="2_trq1w"]
+
+[node name="HighscoreScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sm1l2")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Leaderboard" parent="." instance=ExtResource("2_trq1w")]

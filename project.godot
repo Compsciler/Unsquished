@@ -26,6 +26,10 @@ window/size/viewport_height=640
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_width"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/easyleaderboard/plugin.cfg")
+
 [input]
 
 up={

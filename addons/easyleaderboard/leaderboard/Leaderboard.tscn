@@ -1,0 +1,295 @@
+[gd_scene load_steps=4 format=3 uid="uid://qtd4jtukqvh3"]
+
+[ext_resource type="Script" path="res://addons/easyleaderboard/api/EasyLeaderboard.gd" id="1_pbiq6"]
+[ext_resource type="PackedScene" uid="uid://c0t0hiwfc7xfe" path="res://addons/easyleaderboard/leaderboard/LeaderboardScoreSubmitPanel.tscn" id="2_3bnnd"]
+
+[sub_resource type="GDScript" id="GDScript_7ko77"]
+script/source = "extends Control
+
+signal new_game_button_pressed
+signal main_menu_button_pressed
+
+@export var row_scene : PackedScene = preload(\"res://addons/easyleaderboard/leaderboard/LeaderboardRow.tscn\")
+@export var results_per_page = 10
+@export var current_page = 1
+@export var leaderboard_title = \"Leaderboard\"
+@export var show_new_game_button : bool = true
+@export var show_menu_button : bool = true
+
+@export var new_game_button_text : String = \"New Game\"
+@export var menu_button_text : String = \"Main Menu\"
+
+# Using same defaults as the API
+@export_group(\"EasyLeaderboard API settings\")
+
+@export var easy_leaderboard_url = EasyLeaderboard.DEFAULT_EASY_LEADERBOARD_URL 
+@export var game_name = EasyLeaderboard.DEFAULT_GAME_NAME
+@export var sort_results_asc = EasyLeaderboard.DEFAULT_SORT_RESULTS_ASCENDING
+
+@export_group(\"Submit Score Modal\")
+
+@export var show_submit_modal : bool = false :
+	set(value):
+		show_submit_modal = value
+		if is_visible_in_tree():
+			_handle_visible_panes()
+			
+@export var submit_score : float = 0 :
+	set(value):
+		submit_score = value
+		if is_visible_in_tree():
+			_update_submit_score_panel_options()
+			
+@export var submit_name : String :
+	set(value):
+		submit_name = value
+		if is_visible_in_tree():
+			_update_submit_score_panel_options()
+
+@export var submit_score_metadata = {} :
+	set(value):
+		submit_score_metadata = value
+		if is_visible_in_tree():
+			_update_submit_score_panel_options()
+
+@export var allow_cancel : bool = true :
+	set(value):
+		allow_cancel = value
+		if is_visible_in_tree():
+			_update_submit_score_panel_options()
+
+@onready var results_container : GridContainer = $LeaderboardPanel/ResultsGridContainer
+@onready var easy_leaderboard_api : EasyLeaderboard = $EasyLeaderboard
+@onready var prev_button : Button = $LeaderboardPanel/HeaderGridContainer/PrevButtonContainer/PrevButton
+@onready var next_button : Button = $LeaderboardPanel/HeaderGridContainer/NextButtonContainer/NextButton
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	_handle_visible_panes()
+	if !show_submit_modal:
+		_refresh_results()
+	$LeaderboardPanel/HeaderGridContainer/LeaderboardTitle.text = leaderboard_title
+	
+	_handle_footer_section()
+	
+	_update_submit_score_panel_options()
+	
+func _handle_footer_section():
+	$LeaderboardPanel/FooterGridContainer/MenuButtonContainer.visible = show_menu_button
+	$LeaderboardPanel/FooterGridContainer/MenuButtonContainer/MenuButton.text = menu_button_text
+	
+	$LeaderboardPanel/FooterGridContainer/NewGameButtonContainer.visible = show_new_game_button
+	$LeaderboardPanel/FooterGridContainer/NewGameButtonContainer/NewGameButton.text = new_game_button_text
+	
+	var footer_cols := 0
+	if show_new_game_button:
+		footer_cols += 1
+	if show_menu_button:
+		footer_cols += 1
+	$LeaderboardPanel/FooterGridContainer.columns = footer_cols
+	
+	
+	
+func _update_submit_score_panel_options():
+	$LeaderboardScoreSubmitPanel.score_name = submit_name
+	$LeaderboardScoreSubmitPanel.score = submit_score
+	$LeaderboardScoreSubmitPanel.score_metadata = submit_score_metadata
+	$LeaderboardScoreSubmitPanel.allow_cancel = allow_cancel
+	$LeaderboardScoreSubmitPanel.update_panel_settings()
+	
+func _check_prev_button_valid():
+	prev_button.disabled = current_page == 1
+
+
+func _on_easy_leaderboard_leaderboard_results_changed(results):
+	# Remove old results
+	for child in results_container.get_children():
+		results_container.remove_child(child)
+	
+	var row_number = results_per_page * (current_page - 1)
+	for result in results:
+		row_number = row_number + 1
+		
+		var row = row_scene.instantiate()
+		
+		row.result_number = row_number
+		row.score_name = result.name
+		row.score_value = result.score
+		
+		results_container.add_child(row)
+		
+	# Add fake rows for spacing consistency
+	while results_container.get_child_count() < results_per_page:
+		var fake_row := row_scene.instantiate() as Node
+		fake_row.modulate.a = 0 # make it invisible!
+		results_container.add_child(fake_row)
+		
+	next_button.disabled = len(results) < results_per_page
+	prev_button.disabled = current_page <= 1
+
+
+func _on_next_button_pressed():	
+	current_page = current_page + 1
+	_refresh_results()
+
+func _on_prev_button_pressed():
+	current_page = current_page - 1
+	_refresh_results()
+	
+func _refresh_results():
+	next_button.disabled = true
+	prev_button.disabled = true
+	
+	easy_leaderboard_api.current_page = current_page
+	easy_leaderboard_api.page_size = results_per_page
+	easy_leaderboard_api.game_name = game_name
+	easy_leaderboard_api.sort_results_ascending = sort_results_asc
+	
+	easy_leaderboard_api.get_leaderboard_results()
+
+# Handles showing the right pane (leaderboard or score submit)
+func _handle_visible_panes():
+	$LeaderboardPanel.visible = !show_submit_modal
+	$LeaderboardScoreSubmitPanel.visible = show_submit_modal
+
+func _on_leaderboard_score_submit_panel_leaderboard_score_canceled():
+	show_submit_modal = false
+	_handle_visible_panes()
+	_refresh_results()
+
+
+func _on_leaderboard_score_submit_panel_leaderboard_score_submitted(result):
+	show_submit_modal = false
+	_handle_visible_panes()
+	# TODO - set the page to the right number based on result
+	_calculate_page_for_result(result)
+		
+	_refresh_results()
+
+func _calculate_page_for_result(result):
+	var number_to_skip : int
+	if sort_results_asc:
+		number_to_skip = result.scoresLesser
+	else:
+		number_to_skip = result.scoresGreater
+		
+	# skip pages until we are on the page with the result we just submitted
+	current_page = 1
+	while number_to_skip > results_per_page:
+		number_to_skip -= results_per_page
+		current_page += 1
+	
+
+func _on_new_game_button_pressed():
+	$LeaderboardPanel/FooterGridContainer/MenuButtonContainer/MenuButton.disabled = true
+	$LeaderboardPanel/FooterGridContainer/NewGameButtonContainer/NewGameButton.disabled = true
+	new_game_button_pressed.emit()
+
+func _on_menu_button_pressed():
+	$LeaderboardPanel/FooterGridContainer/MenuButtonContainer/MenuButton.disabled = true
+	$LeaderboardPanel/FooterGridContainer/NewGameButtonContainer/NewGameButton.disabled = true
+	main_menu_button_pressed.emit()
+	
+"
+
+[node name="Leaderboard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_7ko77")
+
+[node name="EasyLeaderboard" type="Node" parent="."]
+script = ExtResource("1_pbiq6")
+
+[node name="LeaderboardPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 643.0
+offset_bottom = 607.0
+
+[node name="HeaderGridContainer" type="GridContainer" parent="LeaderboardPanel"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 643.0
+offset_bottom = 43.0
+columns = 3
+
+[node name="PrevButtonContainer" type="CenterContainer" parent="LeaderboardPanel/HeaderGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PrevButton" type="Button" parent="LeaderboardPanel/HeaderGridContainer/PrevButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Prev"
+
+[node name="LeaderboardTitle" type="Label" parent="LeaderboardPanel/HeaderGridContainer"]
+layout_mode = 2
+text = "Leaderboard"
+horizontal_alignment = 1
+
+[node name="NextButtonContainer" type="CenterContainer" parent="LeaderboardPanel/HeaderGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="Button" parent="LeaderboardPanel/HeaderGridContainer/NextButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Next"
+
+[node name="ResultsGridContainer" type="GridContainer" parent="LeaderboardPanel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 62.0
+offset_right = 615.0
+offset_bottom = 551.0
+
+[node name="CenterContainer" type="CenterContainer" parent="LeaderboardPanel/ResultsGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="LeaderboardPanel/ResultsGridContainer/CenterContainer"]
+layout_mode = 2
+text = "Loading..."
+
+[node name="FooterGridContainer" type="GridContainer" parent="LeaderboardPanel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 561.0
+offset_right = 598.0
+offset_bottom = 601.0
+columns = 2
+
+[node name="NewGameButtonContainer" type="CenterContainer" parent="LeaderboardPanel/FooterGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NewGameButton" type="Button" parent="LeaderboardPanel/FooterGridContainer/NewGameButtonContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="MenuButtonContainer" type="CenterContainer" parent="LeaderboardPanel/FooterGridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MenuButton" type="Button" parent="LeaderboardPanel/FooterGridContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="LeaderboardScoreSubmitPanel" parent="." instance=ExtResource("2_3bnnd")]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 150.0
+offset_right = 506.0
+offset_bottom = 459.0
+easy_leaderboard_api_path = NodePath("../EasyLeaderboard")
+
+[connection signal="leaderboard_results_changed" from="EasyLeaderboard" to="." method="_on_easy_leaderboard_leaderboard_results_changed"]
+[connection signal="leaderboard_score_submitted" from="EasyLeaderboard" to="." method="_on_leaderboard_score_submit_panel_leaderboard_score_submitted"]
+[connection signal="pressed" from="LeaderboardPanel/HeaderGridContainer/PrevButtonContainer/PrevButton" to="." method="_on_prev_button_pressed"]
+[connection signal="pressed" from="LeaderboardPanel/HeaderGridContainer/NextButtonContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="LeaderboardPanel/FooterGridContainer/NewGameButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="LeaderboardPanel/FooterGridContainer/MenuButtonContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="leaderboard_score_canceled" from="LeaderboardScoreSubmitPanel" to="." method="_on_leaderboard_score_submit_panel_leaderboard_score_canceled"]
+[connection signal="leaderboard_score_submitted" from="LeaderboardScoreSubmitPanel" to="." method="_on_leaderboard_score_submit_panel_leaderboard_score_submitted"]
