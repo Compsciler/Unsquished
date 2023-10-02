@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=37 format=3 uid="uid://c6f0ir5m8p7n1"]
+[gd_resource type="SpriteFrames" load_steps=37 format=3 uid="uid://duyg6vk4g5nvb"]
 
 [ext_resource type="Texture2D" uid="uid://dtyri0n34aubk" path="res://Art/PlayerBackAttack/Layer 4.PNG" id="1_txwyn"]
 [ext_resource type="Texture2D" uid="uid://bjnew3kubrdos" path="res://Art/PlayerBackAttack/Layer 6.PNG" id="2_7grnp"]

@@ -118,6 +118,7 @@ expand_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="TextureRect"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 188.0
 offset_top = 50.0
 offset_right = 356.0

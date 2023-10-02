@@ -29,7 +29,7 @@ size = Vector2(560, 65)
 
 [node name="Walls" type="Node2D"]
 script = ExtResource("1_fkiev")
-offset_start = 34.7826
+offset_start = 3.47826
 rate_min = 1.0
 
 [node name="UpWall" type="AnimatableBody2D" parent="." groups=["wall"]]
@@ -38,10 +38,6 @@ z_index = 1
 position = Vector2(210, -270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
-speed = 32.0
-speed_max = 40.0
-speed_increase_start_offset = 0.0
-speed_increase_rate = 0.071875
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="UpWall"]
@@ -62,10 +58,6 @@ z_index = 1
 position = Vector2(210, 270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
-speed = 32.0
-speed_max = 40.0
-speed_increase_start_offset = 0.0
-speed_increase_rate = 0.071875
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="DownWall"]
@@ -83,10 +75,6 @@ z_index = 1
 position = Vector2(-270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
-speed = 32.0
-speed_max = 40.0
-speed_increase_start_offset = 0.0
-speed_increase_rate = 0.071875
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
@@ -105,10 +93,6 @@ z_index = 1
 position = Vector2(270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
-speed = 32.0
-speed_max = 40.0
-speed_increase_start_offset = 0.0
-speed_increase_rate = 0.071875
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall"]
