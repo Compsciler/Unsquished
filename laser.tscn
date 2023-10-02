@@ -1,12 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://bptfjfu26d3n5"]
+[gd_scene load_steps=9 format=3 uid="uid://bptfjfu26d3n5"]
 
 [ext_resource type="Script" path="res://laser.gd" id="1_pu7a7"]
-[ext_resource type="Texture2D" uid="uid://bmpdysw42bxjg" path="res://Art/Hazards/laser.png" id="2_2jl25"]
+[ext_resource type="Texture2D" uid="uid://qmcu1vmjupt1" path="res://Art/Laser/laser_warning.png" id="2_em3yd"]
+[ext_resource type="Texture2D" uid="uid://ykrtymga7pt5" path="res://Art/Laser/laser/Layer 1.PNG" id="3_xshra"]
+[ext_resource type="Texture2D" uid="uid://5bro7ck2uyr2" path="res://Art/Laser/laser/Layer 2.PNG" id="4_qe7gn"]
+[ext_resource type="Texture2D" uid="uid://dwlqahsr0o401" path="res://Art/Laser/laser/Layer 3.PNG" id="5_c1koe"]
+[ext_resource type="Texture2D" uid="uid://cbmwi838o7g4o" path="res://Art/Laser/laser/Layer 4.PNG" id="6_f1jig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uulyo"]
 size = Vector2(960, 30)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_jfx0y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xshra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qe7gn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c1koe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_f1jig")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Laser" type="Node2D" groups=["laser", "trap"]]
+texture_filter = 1
 position = Vector2(69, 44)
 script = ExtResource("1_pu7a7")
 
@@ -16,10 +41,19 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_uulyo")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 1, 1)
-scale = Vector2(1, 0.5)
-texture = ExtResource("2_2jl25")
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="WarningSprite" type="Sprite2D" parent="Node2D"]
+rotation = 1.5708
+scale = Vector2(3, 4.8)
+texture = ExtResource("2_em3yd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+visible = false
+rotation = 1.5708
+scale = Vector2(3, 4.8)
+sprite_frames = SubResource("SpriteFrames_jfx0y")
+frame_progress = 0.0268542
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
