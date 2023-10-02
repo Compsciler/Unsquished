@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bptfjfu26d3n5"]
+[gd_scene load_steps=11 format=3 uid="uid://bptfjfu26d3n5"]
 
 [ext_resource type="Script" path="res://laser.gd" id="1_pu7a7"]
 [ext_resource type="Texture2D" uid="uid://qmcu1vmjupt1" path="res://Art/Laser/laser_warning.png" id="2_em3yd"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://5bro7ck2uyr2" path="res://Art/Laser/laser/Layer 2.PNG" id="4_qe7gn"]
 [ext_resource type="Texture2D" uid="uid://dwlqahsr0o401" path="res://Art/Laser/laser/Layer 3.PNG" id="5_c1koe"]
 [ext_resource type="Texture2D" uid="uid://cbmwi838o7g4o" path="res://Art/Laser/laser/Layer 4.PNG" id="6_f1jig"]
+[ext_resource type="AudioStream" uid="uid://bm1r10hswx843" path="res://Audio/limited_space_laser_warning.mp3" id="7_cnkgg"]
+[ext_resource type="AudioStream" uid="uid://cfkke340is7ir" path="res://Audio/limited_space_laser_appear.mp3" id="8_5edoy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uulyo"]
 size = Vector2(960, 30)
@@ -54,6 +56,14 @@ rotation = 1.5708
 scale = Vector2(3, 4.8)
 sprite_frames = SubResource("SpriteFrames_jfx0y")
 frame_progress = 0.327212
+
+[node name="LaserWarning" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_cnkgg")
+volume_db = -8.0
+
+[node name="LaserAppear" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5edoy")
+volume_db = -8.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

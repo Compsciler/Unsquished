@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://xase2p6wxcnx"]
+[gd_scene load_steps=10 format=3 uid="uid://xase2p6wxcnx"]
 
 [ext_resource type="Script" path="res://spike.gd" id="1_hl22l"]
 [ext_resource type="Texture2D" uid="uid://ujuuyt7xr5mi" path="res://Art/Spike/spike_prep_1.png" id="3_jsqk8"]
 [ext_resource type="Texture2D" uid="uid://dje4fqamjts12" path="res://Art/Spike/spike_prep_2.png" id="3_py6c1"]
 [ext_resource type="Texture2D" uid="uid://ca3o3rcohb348" path="res://Art/Spike/spike_pop_1.png" id="4_h1qex"]
 [ext_resource type="Texture2D" uid="uid://b1rsp05mfqr2a" path="res://Art/Spike/spike_pop_2.png" id="5_4ievy"]
+[ext_resource type="AudioStream" uid="uid://cqmkpqug634ry" path="res://Audio/limited_space_spike_warning.mp3" id="6_qb5sh"]
+[ext_resource type="AudioStream" uid="uid://bi4nn70wifi3m" path="res://Audio/limited_space_spike_appear.mp3" id="7_ui0f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uulyo"]
 size = Vector2(60, 60)
@@ -47,6 +49,14 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_bduei")
 frame = 1
 frame_progress = 1.0
+
+[node name="SpikeWarning" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qb5sh")
+volume_db = -8.0
+
+[node name="SpikeAppear" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ui0f8")
+volume_db = -8.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

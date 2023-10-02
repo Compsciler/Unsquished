@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cijhe4utbfb46"]
+[gd_scene load_steps=5 format=3 uid="uid://cijhe4utbfb46"]
 
 [ext_resource type="FontFile" uid="uid://dc0l4u2m5v43n" path="res://joystix monospace.otf" id="1_77msd"]
 [ext_resource type="Script" path="res://end_scene.gd" id="1_iepdo"]
 [ext_resource type="Script" path="res://LootLockerGodot.gd" id="3_voi56"]
+[ext_resource type="AudioStream" uid="uid://bv1o2v5rfq5vn" path="res://Audio/limited_space_v1.mp3" id="4_lsn8x"]
 
 [node name="EndScene" type="Control"]
 texture_filter = 1
@@ -122,6 +123,11 @@ offset_right = 360.0
 offset_bottom = 621.0
 theme_override_fonts/font = ExtResource("1_77msd")
 text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lsn8x")
+volume_db = -12.0
+autoplay = true
 
 [connection signal="leaderboard_collected" from="LootLocker" to="." method="_on_loot_locker_leaderboard_collected"]
 [connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

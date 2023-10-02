@@ -5,6 +5,9 @@ class_name Laser
 @export var damage_time = 1.0
 @onready var sprite = $Node2D/WarningSprite
 
+@onready var warning = $LaserWarning
+@onready var appear = $LaserAppear
+
 var player = null
 
 var is_damaging = false
@@ -18,13 +21,16 @@ func _ready():
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.6), 0.5)
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 0.2), 0.5)
 #	tween.tween_property(sprite, "modulate", Color(1,0, 0, 1.0), 0.2)
+	warning.play()
 	await get_tree().create_timer(warning_time * 0.33).timeout
 	sprite.hide()
 	await get_tree().create_timer(warning_time * 0.17).timeout
+	warning.play()
 	sprite.show()
 	await get_tree().create_timer(warning_time * 0.33).timeout
 	sprite.hide()
 	await get_tree().create_timer(warning_time * 0.17).timeout
+	appear.play()
 	$Node2D/AnimatedSprite2D.show()
 	$Node2D/AnimatedSprite2D.play("default")
 	is_damaging = true
