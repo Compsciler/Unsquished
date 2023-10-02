@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://colqlee4im413" path="res://Audio/Time Signposts/limited_space_stratosphere.mp3" id="4_fb6de"]
 [ext_resource type="AudioStream" uid="uid://dgeth7yr22rc2" path="res://Audio/Time Signposts/limited_space_exosphere.mp3" id="5_vuhri"]
 [ext_resource type="AudioStream" uid="uid://55sfwqkhofy5" path="res://Audio/Time Signposts/limited_space_outer_space.mp3" id="6_xht2w"]
-[ext_resource type="TileSet" uid="uid://wxwn6752g0jt" path="res://grass_tilemap.tres" id="7_oww65"]
-[ext_resource type="TileSet" uid="uid://bfhvjuipliqd" path="res://cloud_tilemap.tres" id="8_3g5yr"]
+[ext_resource type="TileSet" uid="uid://crv4oy6qjatuv" path="res://grass_tilemap.tres" id="7_oww65"]
+[ext_resource type="TileSet" uid="uid://c1upd3rorooxl" path="res://cloud_tilemap.tres" id="8_3g5yr"]
 [ext_resource type="Texture2D" uid="uid://05d7hryrsbes" path="res://Art/SpaceBackground.png" id="9_r0uih"]
 [ext_resource type="Texture2D" uid="uid://jljp45meabq6" path="res://Art/spacebackground2.png" id="10_vyxak"]
 

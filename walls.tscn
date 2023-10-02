@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://wall_manager.gd" id="1_fkiev"]
 [ext_resource type="Script" path="res://Wall.gd" id="1_wfew1"]
-[ext_resource type="Texture2D" uid="uid://bxwnwtjkrc6qq" path="res://Art/wall_square.png" id="3_tgiqb"]
+[ext_resource type="Texture2D" uid="uid://bm4wsyoj55vgu" path="res://Art/metal_texture.png" id="3_matk6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bjkvj"]
 normal = Vector2(0, 1)
@@ -42,11 +42,13 @@ speed = 32.0
 speed_max = 40.0
 speed_increase_start_offset = 0.0
 speed_increase_rate = 0.071875
+invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="UpWall"]
-position = Vector2(-324.5, -5309)
-scale = Vector2(92.1953, 82.9531)
-texture = ExtResource("3_tgiqb")
+texture_repeat = 2
+position = Vector2(-211, -461)
+scale = Vector2(1.52671, 1.55219)
+texture = ExtResource("3_matk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpWall"]
 shape = SubResource("WorldBoundaryShape2D_bjkvj")
@@ -64,11 +66,13 @@ speed = 32.0
 speed_max = 40.0
 speed_increase_start_offset = 0.0
 speed_increase_rate = 0.071875
+invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="DownWall"]
-position = Vector2(-88.5, 5453.5)
-scale = Vector2(89.4141, 85.2109)
-texture = ExtResource("3_tgiqb")
+texture_repeat = 2
+position = Vector2(-211, 466)
+scale = Vector2(1.52671, 1.55219)
+texture = ExtResource("3_matk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownWall"]
 shape = SubResource("WorldBoundaryShape2D_e50qt")
@@ -83,11 +87,14 @@ speed = 32.0
 speed_max = 40.0
 speed_increase_start_offset = 0.0
 speed_increase_rate = 0.071875
+invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
-position = Vector2(-4730, -42.9998)
-scale = Vector2(73.9062, 95.4375)
-texture = ExtResource("3_tgiqb")
+texture_repeat = 2
+position = Vector2(-470, 0)
+rotation = 1.5708
+scale = Vector2(1.52671, 1.55219)
+texture = ExtResource("3_matk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 shape = SubResource("WorldBoundaryShape2D_7y3hh")
@@ -102,11 +109,14 @@ speed = 32.0
 speed_max = 40.0
 speed_increase_start_offset = 0.0
 speed_increase_rate = 0.071875
+invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall"]
-position = Vector2(5043.5, 16.4997)
-scale = Vector2(78.8047, 97.1953)
-texture = ExtResource("3_tgiqb")
+texture_repeat = 2
+position = Vector2(459, -0.999985)
+rotation = 1.5708
+scale = Vector2(1.52671, 1.55219)
+texture = ExtResource("3_matk6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 shape = SubResource("WorldBoundaryShape2D_ygoia")
