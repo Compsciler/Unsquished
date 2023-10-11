@@ -43,18 +43,13 @@ func spawn_on_player(offset_x = 0, offset_y = 0):
 
 func _on_timer_timeout():
 	var offset_x = 0
-	offset_x += randi() % 40 - 20
-	offset_x += randi() % 40 - 20
-	offset_x += randi() % 40 - 20
-	offset_x += randi() % 40 - 20
-	offset_x += randi() % 40 - 20
+	for i in range(5):
+		offset_x += randi() % 41 - 20
 	var offset_y = 0
-	offset_y += randi() % 40 - 20
-	offset_y += randi() % 40 - 20
-	offset_y += randi() % 40 - 20
-	offset_y += randi() % 40 - 20
-	offset_y += randi() % 40 - 20
+	for i in range(5):
+		offset_y += randi() % 41 - 20
 	spawn_on_player(offset_x, offset_y)
+	
 	spawn_rate += spawn_rate_increase
 	spawn_rate = max(spawn_rate, spawn_rate_min)
 	timer.wait_time = spawn_rate
