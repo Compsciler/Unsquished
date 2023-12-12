@@ -70,4 +70,6 @@ func _on_loot_locker_leaderboard_collected():
 
 func _on_back_pressed():
 	GameManager.score = 0
+	GameManager.raw_score = 0
+	GameManager.supers_unused = 3
 	get_tree().change_scene_to_file("res://title_scene.tscn")

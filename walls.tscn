@@ -38,6 +38,9 @@ z_index = 1
 position = Vector2(210, -270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 32.0
+speed_increase_start_offset = 0.0
+speed_increase_rate = 0.1
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="UpWall"]
@@ -58,6 +61,9 @@ z_index = 1
 position = Vector2(210, 270)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 32.0
+speed_increase_start_offset = 0.0
+speed_increase_rate = 0.1
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="DownWall"]
@@ -75,6 +81,9 @@ z_index = 1
 position = Vector2(-270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 32.0
+speed_increase_start_offset = 0.0
+speed_increase_rate = 0.1
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall"]
@@ -93,6 +102,9 @@ z_index = 1
 position = Vector2(270, 0)
 collision_layer = 2
 script = ExtResource("1_wfew1")
+speed = 32.0
+speed_increase_start_offset = 0.0
+speed_increase_rate = 0.1
 invincible_color = Color(1, 1, 1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall"]

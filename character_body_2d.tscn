@@ -64,7 +64,6 @@ sprite_frames = SubResource("SpriteFrames_4dks8")
 shape = SubResource("RectangleShape2D_1rw1c")
 
 [node name="PunchArea2D" type="Area2D" parent="."]
-position = Vector2(0, 1)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PunchArea2D"]

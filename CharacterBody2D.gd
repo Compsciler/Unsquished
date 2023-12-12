@@ -76,7 +76,7 @@ func _physics_process(delta):
 		
 	
 	# Punch
-	if Input.is_action_just_pressed("hit") && !is_stunned && !squished:
+	if Input.is_action_pressed("hit") && !is_stunned && !squished:
 		if !is_attacking:
 			is_attacking = true
 			var retract_walls = []
