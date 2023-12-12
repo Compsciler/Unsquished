@@ -47,6 +47,7 @@ func _on_timer_timeout():
 #	Engine.time_scale = 10
 #	return
 	if beat_step:
+		print(speed)
 		position += normal * speed * timer.wait_time
 
 
